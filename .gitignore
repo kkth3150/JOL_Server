@@ -7,6 +7,8 @@
 *.o
 *.obj
 *.bin
+vs/
+vs\
 
 # Precompiled Headers
 *.gch
