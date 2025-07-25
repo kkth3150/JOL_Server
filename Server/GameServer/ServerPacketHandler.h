@@ -22,7 +22,9 @@ enum
 	C_CREATE_ROOM = 1007,
 	C_JOIN_ROOM = 1008,
 	C_EXIT_ROOM = 1009,
-	C_CHANGE_INFO = 1010
+	C_CHANGE_INFO = 1010,
+	C_READY = 1011,
+	C_START = 1012
 };
 
 struct BuffData
@@ -47,18 +49,24 @@ public:
 	static void Handle_C_JOIN_ROOM(PacketSessionRef& session, BYTE* buffer, int32 len);
 	static void Handle_C_EXIT_ROOM(PacketSessionRef& session, BYTE* buffer, int32 len);
 	static void Handle_C_CHANGE_INFO(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_READY(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_GAMESTART(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 	//For Send
 	static SendBufferRef Make_S_TEST(uint64 id, uint32 hp, uint16 attack);
-	static SendBufferRef Make_S_SUCCESS_LOGIN(uint16 id);
 	static SendBufferRef Make_S_SUCCESS_ENTER_ROOM(uint16 id);
-	static SendBufferRef Make_S_GAME_START(uint16 id);
 	static SendBufferRef Make_S_WEAPON_HIT(float x, float y, float z);
 	static SendBufferRef Make_S_PLAYER_MOVED(uint8 id, Matrix4x4 mat, float PotapAngle, float PosinAngle);
 	
-	static SendBufferRef Make_S_ROOM_PLAYER_STATES(const std::vector<Room_Ready_Data>& dataList);
+	//ForLogin
+	static SendBufferRef Make_S_SUCCESS_LOGIN(uint16 id);
+	//For RoomList
 	static SendBufferRef Make_S_ROOM_DATA(uint8 id);
+	//For InRoom
 	static SendBufferRef Make_S_ROOM_ENTER(uint8 RoomNum, uint8 GamePosNum);
+	static SendBufferRef Make_S_ROOM_PLAYER_STATES(const std::vector<Room_Ready_Data>& dataList);
+	static SendBufferRef Make_S_GAME_START(uint8 Dummy);
+
 
 };
 

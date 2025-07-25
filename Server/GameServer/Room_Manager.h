@@ -39,9 +39,11 @@ public:
 
 
 	bool Client_ChangeINFO(uint32 ROOMID, uint64 PlayerID,Room_Ready_Data data);
+	bool Ready_Player(uint32 RoomID, uint64 PlayerID);
 	void BroadCast_LobbyState(uint32 roomID);
+	void BroadCast_Game_Start(uint32 roomID);
 
-
+	bool Check_StartGame(uint32 RoomID);
 
 	std::vector<Room_Data> Client_ShowRoom();
 

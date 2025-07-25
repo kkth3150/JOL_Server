@@ -57,6 +57,12 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 	case C_EXIT_ROOM:
 		Handle_C_EXIT_ROOM(session, buffer, len);
 		break;
+	case C_READY:
+		Handle_C_READY(session, buffer, len);
+		break;
+	case C_START:
+		Handle_C_GAMESTART(session, buffer, len);
+		break;
 	default:
 		break;
 	}
@@ -234,9 +240,10 @@ void ServerPacketHandler::Handle_C_EXIT_ROOM(PacketSessionRef& session, BYTE* bu
 	br >> header;
 	br >> RoomID;
 
+	
+	Room_Manager::Get_Instance()->Client_LeaveRoom(C_Session->_players[0]->RoomNum, C_Session->_players[0]);
+	Room_Manager::Get_Instance()->BroadCast_LobbyState(C_Session->_players[0]->RoomNum);
 	C_Session->_players[0]->RoomNum = ROBBY;
-	Room_Manager::Get_Instance()->Client_LeaveRoom(RoomID, C_Session->_players[0]);
-	Room_Manager::Get_Instance()->BroadCast_LobbyState(RoomID);
 
 }
 
@@ -258,6 +265,30 @@ void ServerPacketHandler::Handle_C_CHANGE_INFO(PacketSessionRef& session, BYTE* 
 		Room_Manager::Get_Instance()->BroadCast_LobbyState(RoomID);
 	}
 
+
+
+}
+
+void ServerPacketHandler::Handle_C_READY(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	uint8 RoomID = C_Session->_players[0]->RoomNum;
+	uint8 ID = C_Session->_players[0]->playerID;
+
+	if (Room_Manager::Get_Instance()->Ready_Player(RoomID, ID))
+		Room_Manager::Get_Instance()->BroadCast_LobbyState(RoomID);
+}
+
+
+void ServerPacketHandler::Handle_C_GAMESTART(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+
+
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	uint8 RoomID = C_Session->_players[0]->RoomNum;
+
+	if (Room_Manager::Get_Instance()->Check_StartGame(RoomID))
+		Room_Manager::Get_Instance()->BroadCast_Game_Start(RoomID);
 
 
 }
@@ -322,7 +353,7 @@ SendBufferRef ServerPacketHandler::Make_S_SUCCESS_ENTER_ROOM(uint16 id)
 	return sendBuffer;
 }
 
-SendBufferRef ServerPacketHandler::Make_S_GAME_START(uint16 id)
+SendBufferRef ServerPacketHandler::Make_S_GAME_START(uint8 dummy)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
 
@@ -330,12 +361,10 @@ SendBufferRef ServerPacketHandler::Make_S_GAME_START(uint16 id)
 
 	PacketHeader* header = bw.Reserve<PacketHeader>();
 
-	bw << id;
+	bw << dummy;
 
 	header->size = bw.WriteSize();
 	header->id = S_GAME_START;
-
-	cout << "SEND_GAME_START_MESSAGE" << endl;
 
 	sendBuffer->Close(bw.WriteSize());
 
@@ -403,6 +432,7 @@ SendBufferRef ServerPacketHandler::Make_S_ROOM_PLAYER_STATES(const std::vector<R
 	{
 		bw << data.PlayerID << data.Position << data.Team << data.IsReady;
 	}
+
 
 	// 헤더 정보 채우기
 	header->size = bw.WriteSize();

@@ -39,8 +39,8 @@ int Room_Manager::Update(float DeltaTime)
         if (room->isActive)
             room->Update(DeltaTime); // 예시로 deltaTime 60fps 기준
     }
-    //ShowRoomDataList();
-    ShowRoomData(0);
+    ShowRoomDataList();
+    //ShowRoomData(0);
 
     return 0;
 }
@@ -229,6 +229,21 @@ bool Room_Manager::Client_ChangeINFO(uint32 ROOMID, uint64 PlayerID, Room_Ready_
     return false;
 }
 
+bool Room_Manager::Ready_Player(uint32 RoomID, uint64 PlayerID)
+{
+    if (RoomID >= vRooms.size())
+        return false;
+
+    if (vRooms[RoomID]->isActive)
+    {
+        if (vRooms[RoomID] ->Ready_Player(PlayerID))
+            return true;
+    }
+
+    return false;
+
+}
+
 void Room_Manager::BroadCast_LobbyState(uint32 roomID)
 {
     READ_LOCK;
@@ -239,6 +254,15 @@ void Room_Manager::BroadCast_LobbyState(uint32 roomID)
     vRooms[roomID]->BroadCast_LobbyInfo();
 }
 
+void Room_Manager::BroadCast_Game_Start(uint32 roomID)
+{
+    READ_LOCK;
+
+    if (roomID >= vRooms.size() || vRooms[roomID] == nullptr || !vRooms[roomID]->GetRoomActivate())
+        return;
+
+    vRooms[roomID]->Broadcast_GameStart();
+}
 
 
 
@@ -264,3 +288,19 @@ std::vector<Room_Data> Room_Manager::Client_ShowRoom()
     return vRoom_Data;
 }
 
+bool Room_Manager::Check_StartGame(uint32 RoomID)
+{
+    if (RoomID >= vRooms.size())
+        return false;
+
+    Room* room = vRooms[RoomID];
+    if (!room || !room->GetRoomActivate())
+        return false;
+
+    if (room->CanStartGame())
+    {
+        return room->StartGame();
+    }
+
+    return false;
+}
