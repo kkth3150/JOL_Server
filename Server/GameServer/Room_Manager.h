@@ -22,6 +22,9 @@ public:
 	void ShowRoomDataList();
 	void ShowRoomData(uint32 RoomID);
 
+	void Process_Objectdata(RECV_Data input, int ID, int PlayerID);
+
+
 	Room* Get_Room(uint32 roomID) {
 		if (!vRooms.empty())
 			return vRooms[roomID];
@@ -75,7 +78,10 @@ public:
 			m_pInstance = nullptr;
 		}
 	}
+
 private:
+
+
 	static	Room_Manager* m_pInstance;
 	USE_LOCK;
 

@@ -20,7 +20,7 @@ public:
 		return _isDead;
 	}
 
-	
+	bool Check_Terrain_Collision(Normal_Potan* potan);
 
 	bool Collision_Terrain();
 	void SetDead() { _isDead = true; };

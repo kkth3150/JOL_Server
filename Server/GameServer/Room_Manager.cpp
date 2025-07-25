@@ -27,6 +27,7 @@ void Room_Manager::Initialize()
     {
         if (room->isActive)
             room->Initialize();
+
     }
 
 }
@@ -133,6 +134,35 @@ void Room_Manager::ShowRoomData(uint32 RoomID)
     room->ShowRoomData();
 }
 
+void Room_Manager::Process_Objectdata(RECV_Data input, int RoomID, int PlayerID)
+{
+
+    if (RoomID >= vRooms.size())
+        return;
+
+    if (!vRooms[RoomID]->GetRoomActivate())
+    {
+        switch (input) {
+        case DATA_TANK_MOVE:
+            
+            break;
+
+        case DATA_TANK_SHOT:
+            
+            break;
+
+        case DATA_TREE_DELETE:
+
+            break;
+
+        default:
+            break;
+        }
+
+    }
+
+}
+
 void Room_Manager::DeleteRoom(uint32 roomID)
 {
 
@@ -229,6 +259,7 @@ bool Room_Manager::Client_ChangeINFO(uint32 ROOMID, uint64 PlayerID, Room_Ready_
     return false;
 }
 
+
 void Room_Manager::BroadCast_LobbyState(uint32 roomID)
 {
     READ_LOCK;
@@ -238,8 +269,6 @@ void Room_Manager::BroadCast_LobbyState(uint32 roomID)
 
     vRooms[roomID]->BroadCast_LobbyInfo();
 }
-
-
 
 
 std::vector<Room_Data> Room_Manager::Client_ShowRoom()

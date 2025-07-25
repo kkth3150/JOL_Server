@@ -50,6 +50,7 @@ void Room::Update(float deltaTime)
 		break;
 	case ROOM_INGAME:
 	{
+
 		ShowTankState(0);
 		ShowTankState(1);
 		ShowBulletCnt();
@@ -82,6 +83,7 @@ void Room::LateUpdate()
 
 void Room::Release()
 {
+
 }
 
 void Room::Accept_Player(PlayerRef Player)
@@ -209,6 +211,16 @@ bool Room::Change_Player_Info(uint64 playerID, const Room_Ready_Data& newData)
 	return true;
 }
 
+void Room::Change_Tank_INFO(int64 pID, const Matrix4x4& mat, const float& PotapAngle ,const float& PosinAngle)
+{
+	WRITE_LOCK;
+	//터질 가능성 존재. 인덱스 오버런
+
+	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))
+		[pID])->SetTankState(mat, PotapAngle, PosinAngle);
+
+}
+
 
 
 void Room::BroadCast_LobbyInfo()
@@ -229,7 +241,6 @@ void Room::BroadCast_LobbyInfo()
 
 	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_ROOM_PLAYER_STATES(playerStates);
 	Broadcast(sendBuffer);
-
 }
 
 bool Room::Check_ClientLoading()
@@ -323,6 +334,38 @@ void Room::Broadcast(SendBufferRef sendBuffer)
 		if (player && player->OwenerSession)
 			player->OwenerSession->Send(sendBuffer);
 	}
+}
+
+void Room::Broadcast_Tank_Data()
+{
+
+	std::vector<Tank_INFO> vTankInfo;
+
+	{
+		READ_LOCK;
+
+		auto tankList = Room_ObjectManager.Get_List(OBJ_TANK);
+		if (tankList)
+		{
+			for (size_t i = 0; i < tankList->size(); ++i)
+			{
+				GameObject* obj = (*tankList)[i];
+				if (!obj)
+					continue;
+
+				Tank* tank = dynamic_cast<Tank*>(obj);
+				if (!tank)
+					continue;
+
+				Tank_INFO info = tank->GetTankState();
+				info.id = static_cast<uint8>(i); // or PlayerID if mapped
+				vTankInfo.push_back(info);
+			}
+		}
+	}
+
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_ALL_TANK_STATE(vTankInfo);
+	Broadcast(sendBuffer);
 }
 
 void Room::ShowRoomData()
@@ -525,7 +568,6 @@ void Room::Set_Player_Lobby_State(Room_Ready_Data data, uint64 PlayerID)
 
 void Room::Check_Bullet_Collision()
 {
-
 	auto bulletList = Room_ObjectManager.Get_List(OBJ_WEAPON);
 	if (bulletList == nullptr)
 		return;
@@ -545,5 +587,3 @@ void Room::Check_Bullet_Collision()
 	}
 
 }
-
-

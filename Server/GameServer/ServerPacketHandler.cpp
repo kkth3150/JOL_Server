@@ -455,3 +455,34 @@ SendBufferRef ServerPacketHandler::Make_S_ROOM_ENTER(uint8 RoomNum,uint8 CurPlay
 
 	return sendBuffer;
 }
+
+
+SendBufferRef ServerPacketHandler::Make_S_ALL_TANK_STATE(const std::vector<Tank_INFO>& tankStates)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << static_cast<uint16>(tankStates.size());
+
+	for (const auto& info : tankStates)
+	{
+		bw << info.id;
+
+		// Matrix4x4 Àü¼Û
+		for (int i = 0; i < 4; ++i)
+			for (int j = 0; j < 4; ++j)
+				bw << info.TankTransform.m[i][j];
+
+		bw << info.PotapAngle;
+		bw << info.PosinAngle;	
+		bw << info.TankHP;
+	}
+
+	header->size = bw.WriteSize();
+	header->id = S_ALL_TANK_STATE;
+
+	sendBuffer->Close(bw.WriteSize());
+	return sendBuffer;
+}

@@ -74,7 +74,6 @@ bool Normal_Potan::Check_Collision()
         }
     }
 
-
     return 0;
 }
 

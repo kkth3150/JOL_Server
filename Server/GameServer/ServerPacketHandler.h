@@ -13,6 +13,7 @@ enum
 	S_ROOM_DATA = 7,
 	S_ROOM_ENTER = 8,
 	S_ROOM_PLAYER_STATES = 9,
+	S_ALL_TANK_STATE = 10,
 	C_LOGIN = 1001,
 	C_FINISH_LOADING = 1002,
 	C_KEYINPUT = 1003,
@@ -55,10 +56,13 @@ public:
 	static SendBufferRef Make_S_GAME_START(uint16 id);
 	static SendBufferRef Make_S_WEAPON_HIT(float x, float y, float z);
 	static SendBufferRef Make_S_PLAYER_MOVED(uint8 id, Matrix4x4 mat, float PotapAngle, float PosinAngle);
+	static SendBufferRef Make_S_ALL_TANK_STATE(const std::vector<Tank_INFO>& tankStates);
+
 	
 	static SendBufferRef Make_S_ROOM_PLAYER_STATES(const std::vector<Room_Ready_Data>& dataList);
 	static SendBufferRef Make_S_ROOM_DATA(uint8 id);
 	static SendBufferRef Make_S_ROOM_ENTER(uint8 RoomNum, uint8 GamePosNum);
+
 
 };
 

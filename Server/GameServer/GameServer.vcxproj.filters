@@ -55,6 +55,15 @@
     <Filter Include="Room_Manager\Rooms">
       <UniqueIdentifier>{cfa2060e-cce3-46e6-800a-a28907f6b8f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object_Manager\GameObjects\Vec2Object">
+      <UniqueIdentifier>{a9a3aac3-be15-4273-b729-c35f0695f00a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision_Manager">
+      <UniqueIdentifier>{9b40a524-4b25-4790-b7b7-9b690f118e10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object_Manager\GameObjects\Vec2Object\Tree">
+      <UniqueIdentifier>{125d7a00-d63e-457b-bd7f-3f6cd5b7cc23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -103,6 +112,12 @@
     <ClCompile Include="Room.cpp">
       <Filter>Room_Manager\Rooms</Filter>
     </ClCompile>
+    <ClCompile Include="Collision_Manager.cpp">
+      <Filter>Collision_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Object_Manager\GameObjects\Vec2Object\Tree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -139,9 +154,6 @@
     <ClInclude Include="Weapon.h">
       <Filter>Object_Manager\GameObjects\Vec3Object\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Normal_Potan.h">
-      <Filter>Object_Manager\GameObjects\Vec3Object\Weapon\Normal_Potan</Filter>
-    </ClInclude>
     <ClInclude Include="Room_Manager.h">
       <Filter>Room_Manager</Filter>
     </ClInclude>
@@ -153,6 +165,15 @@
     </ClInclude>
     <ClInclude Include="Room.h">
       <Filter>Room_Manager\Rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision_Manager.h">
+      <Filter>Collision_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Normal_Potan.h">
+      <Filter>Object_Manager\GameObjects\Vec3Object\Weapon\Normal_Potan</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Object_Manager\GameObjects\Vec2Object\Tree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

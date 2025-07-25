@@ -28,8 +28,9 @@ public:
 	bool Change_Player_Info(uint64 playerID, const Room_Ready_Data& newData);
 
 public:
-
-
+	
+	void Change_Tank_INFO(int64 pID, const Matrix4x4& mat, 
+		const float& PosinAngle, const float& PotapAngl);
 
 public:
 
@@ -42,6 +43,9 @@ public:
 	void Broadcast_All_TankState(uint8 PlayersCnt);
 	void Broadcast_Hit_Weapon(Vec3 Pos);
 	void Broadcast(SendBufferRef sendBuffer);
+	void Broadcast_Tank_Data();
+
+
 
 public:
 	//for Debug

@@ -14,6 +14,16 @@
 
 -------------------*/
 
+
+struct TankSize {
+
+	float Width;
+	float Hight;
+	float Length;
+
+};
+
+
 class Tank : public TransformObject
 {
 
@@ -30,6 +40,7 @@ public:
 
 	void SetTankState(const Matrix4x4& mat,float PosinAngle, float PotapAngle);
 	Tank_INFO GetTankState();
+	void UpdateOBBFromTransform();
 	const OBB& Get_OBB() const { return _obbBox; }
 
 	uint64				playerId = 0;
@@ -39,6 +50,7 @@ private:
 	
 	OBB					_obbBox;
 	   
+	TankSize MySize = { 380.f, 370.f,960.f};
 
 };
 

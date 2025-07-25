@@ -11,5 +11,9 @@
 #include "CorePch.h"
 #include "iostream"
 
+#include <cmath>
+#include <algorithm>
+#include <memory>
+
 using ClientSessionRef = shared_ptr<class ClientSession>;
 using PlayerRef = shared_ptr<class Player>;
