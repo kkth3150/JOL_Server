@@ -3,6 +3,45 @@
   "WorkspaceRootPath": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\ServerPacketHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B703414-77BD-4C19-9FE9-EC4DEF2EB517}|..\\..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\VisualStudio\\17.0_ee04bbb6\\SingleFileISense\\_sfi_0403a0a8-ea28-416d-a05a-054832a7549f_.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B703414-77BD-4C19-9FE9-EC4DEF2EB517}|..\\..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\VisualStudio\\17.0_ee04bbb6\\SingleFileISense\\_sfi_0403a0a8-ea28-416d-a05a-054832a7549f_.vcxproj|C:\\USERS\\KKTH3\\ONEDRIVE\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ROOM_MANAGER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\ServerPacketHandler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B703414-77BD-4C19-9FE9-EC4DEF2EB517}|..\\..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\VisualStudio\\17.0_ee04bbb6\\SingleFileISense\\_sfi_0403a0a8-ea28-416d-a05a-054832a7549f_.vcxproj|C:\\USERS\\KKTH3\\ONEDRIVE\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\SERVERPACKETHANDLER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Tank.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -59,18 +98,6 @@
       "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Weapon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Collision_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Collision_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -115,20 +142,8 @@
       "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\GameServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\ServerPacketHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\ServerPacketHandler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ClientSessionManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\ClientSessionManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|solutionrelative:GameServer\\Room_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F03FE732-3473-4BBD-94B1-D4916C3B4A15}|GameServer\\GameServer.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ClientSession.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -236,137 +251,72 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Tree.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.cpp",
-              "RelativeDocumentMoniker": "GameServer\\Tree.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.cpp",
-              "RelativeToolTip": "GameServer\\Tree.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "DocumentIndex": 6,
+              "Title": "Room_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-25T13:32:16.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Tree.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.h",
-              "RelativeDocumentMoniker": "GameServer\\Tree.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.h",
-              "RelativeToolTip": "GameServer\\Tree.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-25T13:31:56.394Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TransformObject.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.h",
-              "RelativeDocumentMoniker": "GameServer\\TransformObject.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.h",
-              "RelativeToolTip": "GameServer\\TransformObject.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-01T08:47:23.164Z",
+              "WhenOpened": "2025-07-25T16:09:26.578Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Normal_Potan.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.cpp",
-              "RelativeDocumentMoniker": "GameServer\\Normal_Potan.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.cpp",
-              "RelativeToolTip": "GameServer\\Normal_Potan.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE4AAAAAAAAA",
+              "Title": "ServerPacketHandler.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:18:34.973Z",
+              "WhenOpened": "2025-07-25T16:08:09.46Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TransformObject.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.cpp",
-              "RelativeDocumentMoniker": "GameServer\\TransformObject.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.cpp",
-              "RelativeToolTip": "GameServer\\TransformObject.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-01T08:48:39.914Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Tank.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.cpp",
-              "RelativeDocumentMoniker": "GameServer\\Tank.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.cpp",
-              "RelativeToolTip": "GameServer\\Tank.cpp",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAB0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:01:43.802Z",
+              "DocumentIndex": 10,
+              "Title": "ServerPacketHandler.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.h",
+              "RelativeToolTip": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\ServerPacketHandler.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-25T16:07:12.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ServerPacketHandler.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.cpp",
+              "RelativeDocumentMoniker": "GameServer\\ServerPacketHandler.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.cpp",
+              "RelativeToolTip": "GameServer\\ServerPacketHandler.cpp",
+              "ViewState": "AgIAAPwAAAAAAAAAAAA0wBgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-31T06:07:18.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Tank.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.h",
               "RelativeDocumentMoniker": "GameServer\\Tank.h",
               "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.h",
               "RelativeToolTip": "GameServer\\Tank.h",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAACoAAAAfAAAA",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACoAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-31T06:01:45.815Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Terrain_Manager.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.h",
-              "RelativeDocumentMoniker": "GameServer\\Terrain_Manager.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.h",
-              "RelativeToolTip": "GameServer\\Terrain_Manager.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T15:17:09.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Terrain_Manager.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.cpp",
-              "RelativeDocumentMoniker": "GameServer\\Terrain_Manager.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.cpp",
-              "RelativeToolTip": "GameServer\\Terrain_Manager.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T15:17:15.601Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Normal_Potan.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.h",
-              "RelativeDocumentMoniker": "GameServer\\Normal_Potan.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.h",
-              "RelativeToolTip": "GameServer\\Normal_Potan.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:17:59.141Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 21,
               "Title": "GameObject.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\GameObject.h",
               "RelativeDocumentMoniker": "GameServer\\GameObject.h",
@@ -374,12 +324,11 @@
               "RelativeToolTip": "GameServer\\GameObject.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:19:17.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:19:17.204Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 22,
               "Title": "GameObject.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\GameObject.cpp",
               "RelativeDocumentMoniker": "GameServer\\GameObject.cpp",
@@ -387,12 +336,11 @@
               "RelativeToolTip": "GameServer\\GameObject.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:18:20.888Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:18:20.888Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 23,
               "Title": "Weapon.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Weapon.h",
               "RelativeDocumentMoniker": "GameServer\\Weapon.h",
@@ -400,12 +348,11 @@
               "RelativeToolTip": "GameServer\\Weapon.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:17:05.687Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:17:05.687Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 24,
               "Title": "Weapon.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Weapon.cpp",
               "RelativeDocumentMoniker": "GameServer\\Weapon.cpp",
@@ -413,25 +360,24 @@
               "RelativeToolTip": "GameServer\\Weapon.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:18:14.039Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:18:14.039Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 4,
               "Title": "Room_Manager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.cpp",
               "RelativeDocumentMoniker": "GameServer\\Room_Manager.cpp",
               "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.cpp",
               "RelativeToolTip": "GameServer\\Room_Manager.cpp",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAAI4AAAAoAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-31T06:36:32.096Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 25,
               "Title": "Collision_Manager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Collision_Manager.cpp",
               "RelativeDocumentMoniker": "GameServer\\Collision_Manager.cpp",
@@ -439,12 +385,171 @@
               "RelativeToolTip": "GameServer\\Collision_Manager.cpp",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-25T12:37:16.481Z",
+              "WhenOpened": "2025-07-25T12:37:16.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Room_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.h",
+              "RelativeDocumentMoniker": "GameServer\\Room_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.h",
+              "RelativeToolTip": "GameServer\\Room_Manager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAzwBgAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-31T06:36:19.072Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Room.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.cpp",
+              "RelativeDocumentMoniker": "GameServer\\Room.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.cpp",
+              "RelativeToolTip": "GameServer\\Room.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAOYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-31T06:01:32.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Room.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.h",
+              "RelativeDocumentMoniker": "GameServer\\Room.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.h",
+              "RelativeToolTip": "GameServer\\Room.h",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAALUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-31T06:27:31.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Normal_Potan.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.h",
+              "RelativeDocumentMoniker": "GameServer\\Normal_Potan.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.h",
+              "RelativeToolTip": "GameServer\\Normal_Potan.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-31T06:17:59.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Terrain_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.cpp",
+              "RelativeDocumentMoniker": "GameServer\\Terrain_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.cpp",
+              "RelativeToolTip": "GameServer\\Terrain_Manager.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-31T15:17:15.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Terrain_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.h",
+              "RelativeDocumentMoniker": "GameServer\\Terrain_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Terrain_Manager.h",
+              "RelativeToolTip": "GameServer\\Terrain_Manager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-31T15:17:09.22Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TransformObject.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.h",
+              "RelativeDocumentMoniker": "GameServer\\TransformObject.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.h",
+              "RelativeToolTip": "GameServer\\TransformObject.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-01T08:47:23.164Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 18,
+              "Title": "Tank.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.cpp",
+              "RelativeDocumentMoniker": "GameServer\\Tank.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tank.cpp",
+              "RelativeToolTip": "GameServer\\Tank.cpp",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-31T06:01:43.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ServerPacketHandler.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.h",
+              "RelativeDocumentMoniker": "GameServer\\ServerPacketHandler.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.h",
+              "RelativeToolTip": "GameServer\\ServerPacketHandler.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-31T06:07:22.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TransformObject.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.cpp",
+              "RelativeDocumentMoniker": "GameServer\\TransformObject.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\TransformObject.cpp",
+              "RelativeToolTip": "GameServer\\TransformObject.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T08:48:39.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Normal_Potan.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.cpp",
+              "RelativeDocumentMoniker": "GameServer\\Normal_Potan.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Normal_Potan.cpp",
+              "RelativeToolTip": "GameServer\\Normal_Potan.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-31T06:18:34.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Tree.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.h",
+              "RelativeDocumentMoniker": "GameServer\\Tree.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.h",
+              "RelativeToolTip": "GameServer\\Tree.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-25T13:31:56.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Tree.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.cpp",
+              "RelativeDocumentMoniker": "GameServer\\Tree.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Tree.cpp",
+              "RelativeToolTip": "GameServer\\Tree.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-25T13:32:16.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "Collision_Manager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Collision_Manager.h",
               "RelativeDocumentMoniker": "GameServer\\Collision_Manager.h",
@@ -452,12 +557,11 @@
               "RelativeToolTip": "GameServer\\Collision_Manager.h",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAABsAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-25T12:37:12.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-25T12:37:12.529Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 27,
               "Title": "ObjectManager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ObjectManager.h",
               "RelativeDocumentMoniker": "GameServer\\ObjectManager.h",
@@ -465,38 +569,11 @@
               "RelativeToolTip": "GameServer\\ObjectManager.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:07:15.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:07:15.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Room.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.h",
-              "RelativeDocumentMoniker": "GameServer\\Room.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.h",
-              "RelativeToolTip": "GameServer\\Room.h",
-              "ViewState": "AQIAABUAAAAAAAAAAAAewCMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:27:31.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Room.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.cpp",
-              "RelativeDocumentMoniker": "GameServer\\Room.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room.cpp",
-              "RelativeToolTip": "GameServer\\Room.cpp",
-              "ViewState": "AQIAAPcAAAAAAAAAAAAAANsAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:01:32.092Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 28,
               "Title": "ObjectManager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ObjectManager.cpp",
               "RelativeDocumentMoniker": "GameServer\\ObjectManager.cpp",
@@ -504,12 +581,11 @@
               "RelativeToolTip": "GameServer\\ObjectManager.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:07:14.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:07:14.898Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 29,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Player.h",
               "RelativeDocumentMoniker": "GameServer\\Player.h",
@@ -517,12 +593,11 @@
               "RelativeToolTip": "GameServer\\Player.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:01:33.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:01:33.117Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 30,
               "Title": "Player.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Player.cpp",
               "RelativeDocumentMoniker": "GameServer\\Player.cpp",
@@ -530,12 +605,11 @@
               "RelativeToolTip": "GameServer\\Player.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:01:33.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:01:33.627Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 31,
               "Title": "MainApp.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\MainApp.cpp",
               "RelativeDocumentMoniker": "DummyClient\\MainApp.cpp",
@@ -543,12 +617,11 @@
               "RelativeToolTip": "DummyClient\\MainApp.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-20T12:40:43.558Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-20T12:40:43.558Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 32,
               "Title": "Define.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Define.h",
               "RelativeDocumentMoniker": "GameServer\\Define.h",
@@ -556,12 +629,11 @@
               "RelativeToolTip": "GameServer\\Define.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:10:17.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:10:17.946Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 33,
               "Title": "pch.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\pch.cpp",
               "RelativeDocumentMoniker": "GameServer\\pch.cpp",
@@ -569,12 +641,11 @@
               "RelativeToolTip": "GameServer\\pch.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T11:03:04.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T11:03:04.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 34,
               "Title": "pch.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\pch.h",
               "RelativeDocumentMoniker": "GameServer\\pch.h",
@@ -582,12 +653,11 @@
               "RelativeToolTip": "GameServer\\pch.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T10:26:36.491Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T10:26:36.491Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 35,
               "Title": "GameServer.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\GameServer.cpp",
               "RelativeDocumentMoniker": "GameServer\\GameServer.cpp",
@@ -595,38 +665,11 @@
               "RelativeToolTip": "GameServer\\GameServer.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:35:18.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:35:18.816Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ServerPacketHandler.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.cpp",
-              "RelativeDocumentMoniker": "GameServer\\ServerPacketHandler.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.cpp",
-              "RelativeToolTip": "GameServer\\ServerPacketHandler.cpp",
-              "ViewState": "AQIAAMwBAAAAAAAAAAAewKcBAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:07:18.266Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "ServerPacketHandler.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.h",
-              "RelativeDocumentMoniker": "GameServer\\ServerPacketHandler.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ServerPacketHandler.h",
-              "RelativeToolTip": "GameServer\\ServerPacketHandler.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:07:22.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 36,
               "Title": "ClientSessionManager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ClientSessionManager.cpp",
               "RelativeDocumentMoniker": "GameServer\\ClientSessionManager.cpp",
@@ -634,25 +677,11 @@
               "RelativeToolTip": "GameServer\\ClientSessionManager.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:43:44.178Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:43:44.178Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "Room_Manager.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.h",
-              "RelativeDocumentMoniker": "GameServer\\Room_Manager.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\Room_Manager.h",
-              "RelativeToolTip": "GameServer\\Room_Manager.h",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAMwBgAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:36:19.072Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "ClientSession.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ClientSession.h",
               "RelativeDocumentMoniker": "GameServer\\ClientSession.h",
@@ -660,12 +689,11 @@
               "RelativeToolTip": "GameServer\\ClientSession.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T07:07:11.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T07:07:11.159Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "ClientSessionManager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ClientSessionManager.h",
               "RelativeDocumentMoniker": "GameServer\\ClientSessionManager.h",
@@ -673,12 +701,11 @@
               "RelativeToolTip": "GameServer\\ClientSessionManager.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:43:43.425Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:43:43.425Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "SGlobal.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\SGlobal.cpp",
               "RelativeDocumentMoniker": "GameServer\\SGlobal.cpp",
@@ -686,12 +713,11 @@
               "RelativeToolTip": "GameServer\\SGlobal.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:02:33.319Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:02:33.319Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "SGlobal.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\SGlobal.h",
               "RelativeDocumentMoniker": "GameServer\\SGlobal.h",
@@ -699,12 +725,11 @@
               "RelativeToolTip": "GameServer\\SGlobal.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T06:02:34.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:02:34.169Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "ClientSession.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\ClientSession.cpp",
               "RelativeDocumentMoniker": "GameServer\\ClientSession.cpp",
@@ -712,12 +737,11 @@
               "RelativeToolTip": "GameServer\\ClientSession.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T06:43:45.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T06:43:45.942Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 42,
               "Title": "DummyClient.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\DummyClient.cpp",
               "RelativeDocumentMoniker": "DummyClient\\DummyClient.cpp",
@@ -725,12 +749,11 @@
               "RelativeToolTip": "DummyClient\\DummyClient.cpp",
               "ViewState": "AQIAAEsAAAAAAAAAAAAAAC8AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-20T10:33:14.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-20T10:33:14.115Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 43,
               "Title": "Session.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\Session.cpp",
               "RelativeDocumentMoniker": "ServerCore\\Session.cpp",
@@ -742,7 +765,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 44,
               "Title": "BufferWriter.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\BufferWriter.h",
               "RelativeDocumentMoniker": "ServerCore\\BufferWriter.h",
@@ -754,7 +777,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 45,
               "Title": "ClientPacketHandler.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\ClientPacketHandler.cpp",
               "RelativeDocumentMoniker": "DummyClient\\ClientPacketHandler.cpp",
@@ -766,7 +789,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 46,
               "Title": "AbstractFactory.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\GameServer\\AbstractFactory.h",
               "RelativeDocumentMoniker": "GameServer\\AbstractFactory.h",
@@ -778,7 +801,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 60,
               "Title": "Lock.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\Lock.h",
               "RelativeDocumentMoniker": "ServerCore\\Lock.h",
@@ -790,7 +813,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 47,
               "Title": "ServiceManager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\ServiceManager.cpp",
               "RelativeDocumentMoniker": "DummyClient\\ServiceManager.cpp",
@@ -802,7 +825,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 59,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
@@ -814,7 +837,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 48,
               "Title": "Lock.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\Lock.cpp",
               "RelativeDocumentMoniker": "ServerCore\\Lock.cpp",
@@ -826,7 +849,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 49,
               "Title": "ClientPacketHandler.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\ClientPacketHandler.h",
               "RelativeDocumentMoniker": "DummyClient\\ClientPacketHandler.h",
@@ -838,7 +861,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 50,
               "Title": "MainApp.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\MainApp.h",
               "RelativeDocumentMoniker": "DummyClient\\MainApp.h",
@@ -850,7 +873,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 52,
               "Title": "Global.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\Global.h",
               "RelativeDocumentMoniker": "DummyClient\\Global.h",
@@ -862,7 +885,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 58,
               "Title": "Service.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\Service.h",
               "RelativeDocumentMoniker": "ServerCore\\Service.h",
@@ -874,7 +897,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 51,
               "Title": "ServiceManager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\ServiceManager.h",
               "RelativeDocumentMoniker": "DummyClient\\ServiceManager.h",
@@ -886,7 +909,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 54,
               "Title": "pch.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\pch.h",
               "RelativeDocumentMoniker": "DummyClient\\pch.h",
@@ -898,7 +921,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 53,
               "Title": "pch.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\DummyClient\\pch.cpp",
               "RelativeDocumentMoniker": "DummyClient\\pch.cpp",
@@ -910,7 +933,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 55,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector",
@@ -922,7 +945,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 56,
               "Title": "Allocator.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\Allocator.cpp",
               "RelativeDocumentMoniker": "ServerCore\\Allocator.cpp",
@@ -934,7 +957,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 57,
               "Title": "Allocator.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\JOL_Server\\Server\\ServerCore\\Allocator.h",
               "RelativeDocumentMoniker": "ServerCore\\Allocator.h",
@@ -943,6 +966,74 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-31T06:02:46.158Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "af3f00b8-62a7-426f-a753-d8a24fa60b68",
+        "Display": 1,
+        "X": -103,
+        "Y": 424,
+        "Width": 2186,
+        "Height": 1304,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Room_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.h",
+              "RelativeToolTip": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room_Manager.h",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-25T16:08:35.569Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "25f8ac7f-5cdd-4cd4-90c3-a43a668f4f5e",
+        "Display": 1,
+        "X": -5,
+        "Y": 348,
+        "Width": 1090,
+        "Height": 1304,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Room.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\\uBC14\uD0D5 \uD654\uBA74\\\uC0C8 \uD3F4\uB354\\Room.cpp",
+              "ViewState": "AgIAAAEAAAAAAAAAAAA0wNMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-25T16:10:34.717Z",
+              "EditorCaption": ""
             }
           ]
         }

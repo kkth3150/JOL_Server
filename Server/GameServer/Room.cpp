@@ -221,6 +221,30 @@ void Room::Change_Tank_INFO(int64 pID, const Matrix4x4& mat, const float& PotapA
 
 }
 
+bool Room::Ready_Player(uint64 playerID)
+{
+	WRITE_LOCK;
+
+	auto it = _Player_States.find(playerID);
+	if (it == _Player_States.end())
+		return false;
+
+	// 이미 Ready 상태라면 false 리턴
+	if (it->second.IsReady)
+		return false;
+
+	// Ready 상태로 설정 후 true 리턴
+	it->second.IsReady = true;
+
+	return true;
+}
+
+void Room::Broadcast_GameStart()
+{
+
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_GAME_START(1);
+	Broadcast(sendBuffer);
+}
 
 
 void Room::BroadCast_LobbyInfo()
@@ -585,5 +609,37 @@ void Room::Check_Bullet_Collision()
 			Broadcast_Hit_Weapon(hitPos);
 		}
 	}
+
+}
+
+
+
+bool Room::CanStartGame()
+{
+	READ_LOCK;
+
+	if (_Player_States.empty())
+		return false;
+
+	for (const auto& pair : _Player_States)
+	{
+		if (!pair.second.IsReady)
+			return false;
+	}
+
+	return true;
+}
+
+bool Room::StartGame()
+{
+	WRITE_LOCK;
+
+	if (CurState == ROOM_INGAME)
+		return false;
+
+	CurState = ROOM_INGAME;
+	isStart = true;
+
+	return true;
 
 }

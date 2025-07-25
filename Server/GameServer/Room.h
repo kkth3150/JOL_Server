@@ -27,6 +27,10 @@ public:
 	void Leave_Player(PlayerRef Player);
 	bool Change_Player_Info(uint64 playerID, const Room_Ready_Data& newData);
 
+	bool Ready_Player(uint64 playerID);
+public:
+
+	void Broadcast_GameStart();
 public:
 	
 	void Change_Tank_INFO(int64 pID, const Matrix4x4& mat, 
@@ -172,6 +176,9 @@ public:
 	bool Wait_Full(uint16 MaxPlayer);
 	void Set_Player_Lobby_State(Room_Ready_Data data, uint64 PlayerID);
 	void Show_Room_Data();
+
+	bool CanStartGame();
+	bool StartGame();
 
 private:
 
