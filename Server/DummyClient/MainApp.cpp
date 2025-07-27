@@ -23,7 +23,7 @@ void Main_App::Update()
 
 void Main_App::Late_Update()
 {
-}
+} 
 
 void Main_App::Release()
 {

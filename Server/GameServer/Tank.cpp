@@ -39,6 +39,17 @@ void Tank::SetTankState(const Matrix4x4& mat, float PotapAngle, float PosinAngle
 
 }
 
+void Tank::SetTankOnlyPos(const Matrix4x4& mat)
+{
+	__super::SetTransform(mat);
+}
+
+void Tank::SetTankOnlyPosin(float PosinAngle, float PotapAngle)
+{
+	_potapAngle = PotapAngle;
+	_posinAngle = PosinAngle;
+}
+
 Tank_INFO Tank::GetTankState()
 {
 

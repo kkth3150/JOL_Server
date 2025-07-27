@@ -39,6 +39,9 @@ public:
 public:					
 
 	void SetTankState(const Matrix4x4& mat,float PosinAngle, float PotapAngle);
+	void SetTankOnlyPos(const Matrix4x4& mat);
+	void SetTankOnlyPosin(float PosinAngle, float PotapAngle);
+
 	Tank_INFO GetTankState();
 	void UpdateOBBFromTransform();
 	OBB2D GetOBB2D() const;

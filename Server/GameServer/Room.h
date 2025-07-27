@@ -64,13 +64,15 @@ public:
 public:
 	//for PlayerSet
 	void SetTankState(int64 pID, const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl);
+	void SetTankPosin(int64 index, const float& PotapAngle, const float& PosinAngle);
+	void SetTankPos(int64 index, const Matrix4x4& mat);
 	Tank_INFO GetTankState(int64 pID);
 
 	void SetTankRespawn(int64 index, const Matrix4x4& mat, const float& PotapAngle, const float& PosinAngle);
 
 public:
 	//for GamePlay
-	void CreateBullet(int8 playerID, WEAPON_ID WeaponID, Vec3 Dir, Vec3 Pos);
+	void CreateBullet(int8 playerID,uint8 TankIndex, WEAPON_ID WeaponID, Vec3 Dir, Vec3 Pos);
 	void Check_Bullet_Collision();
 	Tank* FindTankByPlayerId(uint8 playerId);
 	void UpdateCaptureGauge(float deltaTime);
@@ -136,7 +138,8 @@ public:
 	bool isMax = false;
 	bool isActive = false;
 
-	
+	int lastSentBlueGauge = 0;
+	int lastSentRedGauge = 0;
 
 	unsigned char RoomID;
 

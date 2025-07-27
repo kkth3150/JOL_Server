@@ -65,6 +65,13 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 	case C_FINISH_LOADING:
 		Handle_C_LOADING_FINISH(session, buffer, len);
 		break;
+	case C_MYPOS:
+		Handle_C_POS_MOVE(session, buffer, len);
+		break;
+	case C_MYPOSIN: 
+		Handle_C_POSIN_MOVE(session, buffer, len);
+		break;
+
 	default:
 		break;
 	}
@@ -175,13 +182,13 @@ void ServerPacketHandler::Handle_C_SHOT(PacketSessionRef& session, BYTE* buffer,
 	WEAPON_ID WeaponID = WEAPON_NPOTAN;
 	Vec3 InitPos;
 	Vec3 Normalized_Dir;
-
-	br >> InitPos.X >> InitPos.Y >> InitPos.Z
+	uint8 TankIndex;
+	br >> TankIndex >>InitPos.X >> InitPos.Y >> InitPos.Z
 		>> Normalized_Dir.X >> Normalized_Dir.Y >> Normalized_Dir.Z;
 
 	uint8 ID = C_Session->_players[0]->playerID;
 	uint8 RoomNum = C_Session->_players[0]->RoomNum;
-	Room_Manager::Get_Instance()->Get_Room(RoomNum)->CreateBullet(ID, WeaponID, Normalized_Dir, InitPos);
+	Room_Manager::Get_Instance()->Get_Room(RoomNum)->CreateBullet(ID, TankIndex,WeaponID, Normalized_Dir, InitPos);
 	//GRoom.CreateBullet(ID, WeaponID, Normalized_Dir, InitPos);
 
 }
@@ -336,6 +343,64 @@ void ServerPacketHandler::Handle_C_LOADING_FINISH(PacketSessionRef& session, BYT
 
 }
 
+void ServerPacketHandler::Handle_C_POSIN_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	BufferReader br(buffer, len);
+	PacketHeader header;
+	br >> header;
+
+	uint8 tankIndex;
+	br >> tankIndex;
+
+	float potapRotation;
+	float posinRotation;
+
+	// 행렬 데이터 읽기
+
+	br >> potapRotation >> posinRotation;
+
+	if (!C_Session->_players.empty()) {
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		// 인덱스로 지정된 탱크 상태 갱신
+		Room_Manager::Get_Instance()->Get_Room(roomID)->SetTankPosin(tankIndex,  potapRotation, posinRotation);
+	}
+}
+
+void ServerPacketHandler::Handle_C_POS_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	BufferReader br(buffer, len);
+	PacketHeader header;
+	br >> header;
+
+	uint8 tankIndex;
+	br >> tankIndex;
+	Matrix4x4 mat;
+
+	// 행렬 데이터 읽기
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			br >> mat.m[i][j];
+		}
+	}
+
+
+
+	if (!C_Session->_players.empty()) {
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		// 인덱스로 지정된 탱크 상태 갱신
+		Room_Manager::Get_Instance()->Get_Room(roomID)->SetTankPos(tankIndex, mat);
+	}
+
+}
+
 SendBufferRef ServerPacketHandler::Make_S_TEST(uint64 id, uint32 hp, uint16 attack)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
@@ -471,6 +536,24 @@ SendBufferRef ServerPacketHandler::Make_S_GAME_LOSE(uint8 Dummy)
 	return sendBuffer;
 }
 
+SendBufferRef ServerPacketHandler::MAKE_S_CAPTURE(uint8 BULE, uint8 RED)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << BULE << RED;
+
+	header->size = bw.WriteSize();
+	header->id = S_CAPTURE;
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
 SendBufferRef ServerPacketHandler::Make_S_WEAPON_HIT(float x, float y, float z)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
@@ -495,13 +578,13 @@ SendBufferRef ServerPacketHandler::Make_S_ALL_TANK_STATE(std::vector<Tank_INFO>&
 	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
 
 	PacketHeader* header = bw.Reserve<PacketHeader>();
-	header->id = S_ALL_TANK_STATE;
 
 	bw << static_cast<uint16>(tanks.size());
 
+	uint8 id = 0;
 	for (Tank_INFO& tank : tanks)
 	{
-		bw << tank.id;
+		bw << id++;
 
 		for (int i = 0; i < 4; ++i)
 		{
@@ -514,11 +597,13 @@ SendBufferRef ServerPacketHandler::Make_S_ALL_TANK_STATE(std::vector<Tank_INFO>&
 		bw << tank.PotapAngle;
 		bw << tank.PosinAngle;
 		bw << tank.TankHP;
+		
 	}
 
 	header->size = bw.WriteSize();
+	header->id = S_ALL_TANK_STATE;
 	sendBuffer->Close(bw.WriteSize());
-
+	
 	return sendBuffer;
 }
 

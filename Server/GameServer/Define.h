@@ -192,7 +192,6 @@ struct OBB
 struct Tank_INFO {
 
 	uint8		id;
-
 	Matrix4x4	TankTransform;
 	float		PosinAngle;
 	float		PotapAngle;

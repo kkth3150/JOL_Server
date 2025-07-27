@@ -18,8 +18,9 @@ enum
 	S_TANK_DAMAGED = 12,
 	S_TANK_DEAD = 13,
 	S_TANK_KILL = 14,
-	S_GAME_WIN =15,
+	S_GAME_WIN = 15,
 	S_GAME_LOSE = 16,
+	S_CAPTURE = 17,
 	C_LOGIN = 1001,
 	C_FINISH_LOADING = 1002,
 	C_KEYINPUT = 1003,
@@ -32,7 +33,9 @@ enum
 	C_CHANGE_INFO = 1010,
 	C_READY = 1011,
 	C_START = 1012,
-	C_RESPAWN_TANK = 1013
+	C_RESPAWN_TANK = 1013,
+	C_MYPOS = 1014,
+	C_MYPOSIN = 1015
 };
 
 struct BuffData
@@ -64,6 +67,9 @@ public:
 	
 	//For GamePlay
 	static void Handle_C_LOADING_FINISH(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_POSIN_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_POS_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
+
 
 	/*--------------
 		For Send
@@ -91,6 +97,6 @@ public:
 	static SendBufferRef Make_S_ALL_PLAYER_LOADING_FINISH(uint8 Dummy);
 	static SendBufferRef Make_S_GAME_WIN(uint8 Dummy);
 	static SendBufferRef Make_S_GAME_LOSE(uint8 Dummy);
-
+	static SendBufferRef MAKE_S_CAPTURE(uint8 BULE, uint8  Red);
 };
 

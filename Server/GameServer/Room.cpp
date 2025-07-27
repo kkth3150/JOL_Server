@@ -84,11 +84,14 @@ void Room::LateUpdate()
 				Tank* tank = dynamic_cast<Tank*>((*tankList)[i]);
 				if (!tank) continue;
 
-				const Matrix4x4& mat = tank->GetTankState().TankTransform;
+				//const Matrix4x4& mat = tank->GetTankState().TankTransform;
+				Tank_INFO info = tank->GetTankState();
 				std::cout << "탱크 인덱스: " << i
-					<< " | X: " << mat.m[3][0]
-					<< " | Y: " << mat.m[3][1]
-					<< " | Z: " << mat.m[3][2] << std::endl;
+					<< " | X: " << info.TankTransform.m[3][0]
+					<< " | Y: " << info.TankTransform.m[3][1]
+					<< " | Z: " << info.TankTransform.m[3][2]
+					<< " | 포탑 각도: " << info.PotapAngle
+					<< " | 포신 각도: " << info.PosinAngle << std::endl;
 			}
 		}
 	}
@@ -566,6 +569,17 @@ void Room::SetTankState(int64 index, const Matrix4x4& mat, const float& PotapAng
 
 }
 
+void Room::SetTankPosin(int64 index, const float& PotapAngle, const float& PosinAngle) {
+	WRITE_LOCK;
+	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetTankOnlyPosin(PosinAngle, PotapAngle);
+}
+void Room::SetTankPos(int64 index, const Matrix4x4& mat) {
+
+	WRITE_LOCK;
+	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetTankOnlyPos(mat);
+}
+
+
 Tank_INFO Room::GetTankState(int64 index)
 {
 	READ_LOCK;
@@ -579,7 +593,7 @@ void Room::SetTankRespawn(int64 index, const Matrix4x4& mat, const float& PotapA
 	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetSpawn(mat, PotapAngle,PosinAngle);
 }
 
-void Room::CreateBullet(int8 pID, WEAPON_ID ID, Vec3 Dir, Vec3 Pos)
+void Room::CreateBullet(int8 pID, uint8 tankindex,WEAPON_ID ID, Vec3 Dir, Vec3 Pos)
 {
 	WRITE_LOCK;
 
@@ -594,7 +608,7 @@ void Room::CreateBullet(int8 pID, WEAPON_ID ID, Vec3 Dir, Vec3 Pos)
 	case WEAPON_NPOTAN:
 	{
 
-		bool isBlueTeam = dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[pID])->isBlueTeam();
+		bool isBlueTeam = dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[tankindex])->isBlueTeam();
 		GameObject* TempBullet = CAbstractFactory<Normal_Potan>::Create();
 		dynamic_cast<Normal_Potan*>(TempBullet)->SetInitData(Dir, Pos, pID, isBlueTeam);
 		Room_ObjectManager.Add_Object(OBJ_WEAPON, TempBullet);
@@ -842,15 +856,36 @@ void Room::UpdateCaptureGauge(float deltaTime)
 		}
 	}
 
-	// 증가
+	// 점령률 누적
 	blueGauge += blueCount * gaugePerTankPerSecond * deltaTime;
 	redGauge += redCount * gaugePerTankPerSecond * deltaTime;
 
-	// 클램핑
-	if (blueGauge > 100.f) blueGauge = 100.f;
-	if (redGauge > 100.f) redGauge = 100.f;
+	//정수 단위로 증가했는지 감지
+	int currBlueInt = static_cast<int>(blueGauge);
+	int currRedInt = static_cast<int>(redGauge);
 
-	std::cout << "점령률 → BLUE: " << blueGauge << "% / RED: " << redGauge << "%" << std::endl;
+	bool shouldBroadcast = false;
+
+	if (currBlueInt > lastSentBlueGauge)
+	{
+		lastSentBlueGauge = currBlueInt;
+		shouldBroadcast = true;
+	}
+
+	if (currRedInt > lastSentRedGauge)
+	{
+		lastSentRedGauge = currRedInt;
+		shouldBroadcast = true;
+	}
+
+	if (shouldBroadcast)
+	{
+		auto buffer = ServerPacketHandler::MAKE_S_CAPTURE(blueGauge, redGauge);
+		Broadcast(buffer);
+	}
+
+	// 디버깅 출력
+	std::cout << "점령률 → BLUE: " << blueGauge << " / RED: " << redGauge << std::endl;
 
 	if (blueGauge >= 100.f) OnTeamWin(true);
 	else if (redGauge >= 100.f) OnTeamWin(false);
