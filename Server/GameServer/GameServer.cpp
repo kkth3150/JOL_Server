@@ -41,17 +41,14 @@ int main()
 	constexpr int64_t FRAME_DURATION_MS = 33;
 
 
-	//std::cout << "맵 데이터 생성 중" << endl;
-	//bool success = Terrain_Manager::GetInstance().Read_Map("Terrain4096Map.bin", 4096, 4096, 1.0f);
+	std::cout << "맵 데이터 생성 중" << endl;
 
-	//if (!success)
-	//{
-	//	std::cout << "맵 읽기 오류!" << std::endl;
-	//}
+	if (Terrain_Manager::GetInstance().Read_Map("Terrain4096Map.bin", 4096, 4096, 1.0f))
+	{
+		std::cout << "맵 읽기 오류!" << std::endl;
+	}
 
-	//Terrain_Manager::GetInstance().Show_MapData();
 
-	//Room_Manager::Get_Instance()->Initialize();
 
 	using clock = std::chrono::high_resolution_clock;
 	auto previousTime = clock::now();

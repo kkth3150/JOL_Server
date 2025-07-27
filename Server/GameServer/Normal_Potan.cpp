@@ -36,7 +36,7 @@ void Normal_Potan::Release()
 {
 }
 
-void Normal_Potan::SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 ID)
+void Normal_Potan::SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 ID,bool blue)
 {
 
     OwnerID = ID;
@@ -47,6 +47,8 @@ void Normal_Potan::SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 I
         direction.Y * speed,
         direction.Z * speed
     };
+    
+    _isBlue = blue;
 }
 
 void Normal_Potan::Process_Move(float deltaTime)

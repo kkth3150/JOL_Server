@@ -244,6 +244,20 @@ bool Room_Manager::Ready_Player(uint32 RoomID, uint64 PlayerID)
 
 }
 
+void Room_Manager::Client_LOADING_FINISH(uint32 ROOMID)
+{
+
+    if (ROOMID >= vRooms.size())
+        return;
+
+    if (vRooms[ROOMID]->isActive)
+    {
+        vRooms[ROOMID]->Clinet_Loading_Finish();
+    }
+
+
+}
+
 void Room_Manager::BroadCast_LobbyState(uint32 roomID)
 {
     READ_LOCK;
@@ -288,6 +302,18 @@ std::vector<Room_Data> Room_Manager::Client_ShowRoom()
     return vRoom_Data;
 }
 
+void Room_Manager::SetTankByRoomIndex(int RoomID, int64 pID, const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl)
+{
+    if (RoomID >= vRooms.size())
+        return;
+
+    Room* room = vRooms[RoomID];
+    if (!room || !room->GetRoomActivate())
+        return;
+
+    room->SetTankState(pID,mat,PosinAngle,PotapAngl);
+}
+
 bool Room_Manager::Check_StartGame(uint32 RoomID)
 {
     if (RoomID >= vRooms.size())
@@ -299,7 +325,7 @@ bool Room_Manager::Check_StartGame(uint32 RoomID)
 
     if (room->CanStartGame())
     {
-        return room->StartGame();
+        return true;
     }
 
     return false;

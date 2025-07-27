@@ -31,14 +31,13 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 		Handle_C_MOVEMENT(session, buffer, len);
 		break;
 
-	case C_FINISH_LOADING:
-		Handle_C_FINISH_LOADING(session, buffer, len);
-		break;
-
 	case C_SHOT:
 		Handle_C_SHOT(session, buffer, len);
 		break;
 
+	case C_RESPAWN_TANK:
+		Handle_C_TANK_RESPAWN(session, buffer, len);
+		break;
 	case C_SHOW_ROOM:
 		Handle_C_SHOW_ROOM(session, buffer, len);
 		break;
@@ -62,6 +61,9 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 		break;
 	case C_START:
 		Handle_C_GAMESTART(session, buffer, len);
+		break;
+	case C_FINISH_LOADING:
+		Handle_C_LOADING_FINISH(session, buffer, len);
 		break;
 	default:
 		break;
@@ -131,15 +133,18 @@ void ServerPacketHandler::Handle_C_MOVEMENT(PacketSessionRef& session, BYTE* buf
 {
 
 	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
-
 	BufferReader br(buffer, len);
 	PacketHeader header;
 	br >> header;
+
+	uint8 tankIndex;
+	br >> tankIndex;
 
 	Matrix4x4 mat;
 	float potapRotation;
 	float posinRotation;
 
+	// 행렬 데이터 읽기
 	for (int i = 0; i < 4; ++i)
 	{
 		for (int j = 0; j < 4; ++j)
@@ -151,8 +156,11 @@ void ServerPacketHandler::Handle_C_MOVEMENT(PacketSessionRef& session, BYTE* buf
 	br >> potapRotation >> posinRotation;
 
 	if (!C_Session->_players.empty()) {
-		uint64 ID = C_Session->_players[0]->playerID;
-		//	GRoom.SetTankState(ID, mat, potapRotation, posinRotation);
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		// 인덱스로 지정된 탱크 상태 갱신
+		Room_Manager::Get_Instance()->Get_Room(roomID)->SetTankState(tankIndex, mat, potapRotation, posinRotation);
 	}
 
 }
@@ -172,18 +180,45 @@ void ServerPacketHandler::Handle_C_SHOT(PacketSessionRef& session, BYTE* buffer,
 		>> Normalized_Dir.X >> Normalized_Dir.Y >> Normalized_Dir.Z;
 
 	uint8 ID = C_Session->_players[0]->playerID;
+	uint8 RoomNum = C_Session->_players[0]->RoomNum;
+	Room_Manager::Get_Instance()->Get_Room(RoomNum)->CreateBullet(ID, WeaponID, Normalized_Dir, InitPos);
 	//GRoom.CreateBullet(ID, WeaponID, Normalized_Dir, InitPos);
 
 }
 
-void ServerPacketHandler::Handle_C_FINISH_LOADING(PacketSessionRef& session, BYTE* buffer, int32 len)
+void ServerPacketHandler::Handle_C_TANK_RESPAWN(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
-
 	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
 	BufferReader br(buffer, len);
 	PacketHeader header;
 	br >> header;
-	//GRoom.Clinet_Loading_Finish();
+
+	uint8 tankIndex;
+	br >> tankIndex;
+
+	Matrix4x4 mat;
+	float potapRotation;
+	float posinRotation;
+
+	// 행렬 데이터 읽기
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			br >> mat.m[i][j];
+		}
+	}
+
+	br >> potapRotation >> posinRotation;
+
+	if (!C_Session->_players.empty()) {
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		// 인덱스로 지정된 탱크 상태 갱신
+		Room_Manager::Get_Instance()->Get_Room(roomID)->SetTankRespawn(tankIndex, mat, potapRotation, posinRotation);
+
+	}
 
 }
 
@@ -283,13 +318,21 @@ void ServerPacketHandler::Handle_C_READY(PacketSessionRef& session, BYTE* buffer
 void ServerPacketHandler::Handle_C_GAMESTART(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
 
-
 	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
 	uint8 RoomID = C_Session->_players[0]->RoomNum;
 
 	if (Room_Manager::Get_Instance()->Check_StartGame(RoomID))
 		Room_Manager::Get_Instance()->BroadCast_Game_Start(RoomID);
 
+
+}
+
+void ServerPacketHandler::Handle_C_LOADING_FINISH(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	uint8 RoomID = C_Session->_players[0]->RoomNum;
+	
+	Room_Manager::Get_Instance()->Client_LOADING_FINISH(RoomID);
 
 }
 
@@ -371,6 +414,63 @@ SendBufferRef ServerPacketHandler::Make_S_GAME_START(uint8 dummy)
 	return sendBuffer;
 }
 
+SendBufferRef ServerPacketHandler::Make_S_ALL_PLAYER_LOADING_FINISH(uint8 Dummy)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << Dummy;
+
+	header->size = bw.WriteSize();
+	header->id = S_ROOM_ALL_PLAYER_FINISH_LOADING;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_GAME_WIN(uint8 Dummy)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << Dummy;
+
+	header->size = bw.WriteSize();
+	header->id = S_GAME_WIN;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_GAME_LOSE(uint8 Dummy)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << Dummy;
+
+	header->size = bw.WriteSize();
+	header->id = S_GAME_LOSE;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
 SendBufferRef ServerPacketHandler::Make_S_WEAPON_HIT(float x, float y, float z)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
@@ -389,6 +489,38 @@ SendBufferRef ServerPacketHandler::Make_S_WEAPON_HIT(float x, float y, float z)
 	return sendBuffer;
 }
 
+SendBufferRef ServerPacketHandler::Make_S_ALL_TANK_STATE(std::vector<Tank_INFO>& tanks)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+	header->id = S_ALL_TANK_STATE;
+
+	bw << static_cast<uint16>(tanks.size());
+
+	for (Tank_INFO& tank : tanks)
+	{
+		bw << tank.id;
+
+		for (int i = 0; i < 4; ++i)
+		{
+			bw << tank.TankTransform.m[i][0];
+			bw << tank.TankTransform.m[i][1];
+			bw << tank.TankTransform.m[i][2];
+			bw << tank.TankTransform.m[i][3];
+		}
+
+		bw << tank.PotapAngle;
+		bw << tank.PosinAngle;
+		bw << tank.TankHP;
+	}
+
+	header->size = bw.WriteSize();
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
 
 SendBufferRef ServerPacketHandler::Make_S_PLAYER_MOVED(uint8 Id, Matrix4x4 mat, float PotapAngle, float PosinAngle)
 {
@@ -410,11 +542,88 @@ SendBufferRef ServerPacketHandler::Make_S_PLAYER_MOVED(uint8 Id, Matrix4x4 mat, 
 	bw << PosinAngle;
 
 	header->size = bw.WriteSize();
-	header->id = S_PLAYER_MOVE;
+	header->id = S_ALL_TANK_STATE;
 
 	sendBuffer->Close(bw.WriteSize());
 	return sendBuffer;
 }
+
+SendBufferRef ServerPacketHandler::Make_S_TANK_HIT(uint8 id)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << id;
+
+	header->size = bw.WriteSize();
+	header->id = S_TANK_HIT;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_TANK_DAMAGED(uint8 id)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << id;
+
+	header->size = bw.WriteSize();
+	header->id = S_TANK_DAMAGED;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_TANK_DEAD(uint8 id)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << id;
+
+	header->size = bw.WriteSize();
+	header->id = S_TANK_DEAD;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_TANK_KILL(uint8 id)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << id;
+
+	header->size = bw.WriteSize();
+	header->id = S_TANK_KILL;
+
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
 
 SendBufferRef ServerPacketHandler::Make_S_ROOM_PLAYER_STATES(const std::vector<Room_Ready_Data>& dataList)
 {

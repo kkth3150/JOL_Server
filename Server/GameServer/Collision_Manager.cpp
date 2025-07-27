@@ -4,6 +4,8 @@
 #include "ObjectManager.h"
 #include "Terrain_Manager.h"
 
+
+
 bool CollisionManager::CheckCollision_OBB2D_Circle(const Vec2& circleCenter, float radius, const Vec2& boxCenter, const Vec2 axes[2], const Vec2& halfSize)
 {
 	Vec2 dir = circleCenter - boxCenter;
@@ -44,3 +46,17 @@ bool CollisionManager::Check_Terrain_Collision(GameObject* object)
 
 }
 
+bool CollisionManager::CheckCollision_Point_Sphere(const Vec3& point, const Vec3& center, float radius)
+{
+	Vec3 diff = point - center;
+	return diff.LengthSq() <= radius * radius;
+}
+
+bool CollisionManager::CheckCollision_Point_Sphere2D(const Vec3& point, const Vec3& center, float radius)
+{
+	Vec2 point2D = { point.X, point.Z };
+	Vec2 center2D = { center.X, center.Z };
+
+	Vec2 diff = point2D - center2D;
+	return diff.LengthSq() <= radius * radius;
+}

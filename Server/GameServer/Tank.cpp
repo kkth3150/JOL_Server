@@ -3,6 +3,7 @@
 
 Tank::Tank()
 {
+	Spawn = true;
 }
 
 Tank::~Tank()
@@ -16,7 +17,7 @@ void Tank::Initialize()
 
 int Tank::Update(float deltaTime)
 {
-
+	SyncPosFromMatrix();
 	UpdateOBBFromTransform();
 	return 0;
 }
@@ -76,4 +77,37 @@ void Tank::UpdateOBBFromTransform()
 		MySize.Hight * 0.5f,
 		MySize.Length * 0.5f
 	);
+}
+
+OBB2D Tank::GetOBB2D() const
+{
+	return {
+		Vec2(_obbBox.center.X, _obbBox.center.Z),
+		{ Vec2(_obbBox.axis[0].X, _obbBox.axis[0].Z).GetNormalized(),
+		  Vec2(_obbBox.axis[2].X, _obbBox.axis[2].Z).GetNormalized() },
+		Vec2(_obbBox.halfSize.X, _obbBox.halfSize.Z)
+	};
+}
+
+void Tank::Damage(int dmg)
+{
+	_hp -= dmg;
+	if (_hp < 0)
+		_hp = 0;
+}
+
+bool Tank::IsDead() 
+{
+	
+	return _hp <= 0;
+
+}
+
+void Tank::SetSpawn(const Matrix4x4& mat, float PosinAngle, float PotapAngle)
+{
+
+	__super::SetTransform(mat);
+	_potapAngle = PotapAngle;
+	_posinAngle = PosinAngle;
+	Spawn = true;
 }

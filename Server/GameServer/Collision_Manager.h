@@ -4,7 +4,9 @@ struct Vec2;
 struct Vec3;
 struct OBB;
 
-class GameObject
+class GameObject;
+
+
 
 class CollisionManager
 {
@@ -26,6 +28,10 @@ public:
 	bool CheckCollision_Point_OBB3D(const Vec3& point, const OBB& obb);
 
 	bool Check_Terrain_Collision(GameObject* GameObejct);
+
+	bool CheckCollision_Point_Sphere(const Vec3& point, const Vec3& center, float radius);
+
+	bool CheckCollision_Point_Sphere2D(const Vec3& point, const Vec3& center, float radius);
 
 
 };

@@ -29,6 +29,8 @@ public:
 	Room* Get_Room(uint32 roomID) {
 		if (!vRooms.empty())
 			return vRooms[roomID];
+		else
+			return nullptr;
 	}
 
 	void		DeleteRoom(uint32 roomID);
@@ -37,15 +39,21 @@ public:
 
 public:
 
-	int Client_CreateRoom(PlayerRef player);
-	int Client_EnterRoom(uint32 RoomID, PlayerRef player);
+	int  Client_CreateRoom(PlayerRef player);
+	int  Client_EnterRoom(uint32 RoomID, PlayerRef player);
 	bool Client_LeaveRoom(uint32 RoomID, PlayerRef player);
 
 
 	bool Client_ChangeINFO(uint32 ROOMID, uint64 PlayerID, Room_Ready_Data data);
 	bool Ready_Player(uint32 RoomID, uint64 PlayerID);
+	void Client_LOADING_FINISH(uint32 ROOMID);
+
 	void BroadCast_LobbyState(uint32 roomID);
 	void BroadCast_Game_Start(uint32 roomID);
+
+
+
+	void SetTankByRoomIndex(int RoomID,int64 pID,const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl);
 
 	bool Check_StartGame(uint32 RoomID);
 

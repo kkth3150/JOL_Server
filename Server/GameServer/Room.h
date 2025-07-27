@@ -1,6 +1,8 @@
 #pragma once
 #include "ObjectManager.h"
 
+class Tank;
+
 enum ROOM_STATE {
 
 	ROOM_UNACTIVATE, ROOM_WAITTING, ROOM_INGAME, ROOM_END
@@ -33,7 +35,9 @@ public:
 	void Broadcast_GameStart();
 public:
 	
-	void Change_Tank_INFO(int64 pID, const Matrix4x4& mat, 
+	void SpawnTanks();
+
+	void Change_Tank_INFO(int64 pID, const Matrix4x4& mat,
 		const float& PosinAngle, const float& PotapAngl);
 
 public:
@@ -62,17 +66,27 @@ public:
 	void SetTankState(int64 pID, const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl);
 	Tank_INFO GetTankState(int64 pID);
 
+	void SetTankRespawn(int64 index, const Matrix4x4& mat, const float& PotapAngle, const float& PosinAngle);
+
 public:
 	//for GamePlay
 	void CreateBullet(int8 playerID, WEAPON_ID WeaponID, Vec3 Dir, Vec3 Pos);
 	void Check_Bullet_Collision();
+	Tank* FindTankByPlayerId(uint8 playerId);
+	void UpdateCaptureGauge(float deltaTime);
+	void ResetRoom();
+	void OnTeamWin(bool isBlueWinner);
+	void Broadcast_All_TankStates_To_AllPlayers();
 	void Detect_Bullet_Tank_Collisions();
+	void HandleTankHit(Tank* tank, uint8 shooterPlayerID);
 	bool Check_OBB_Collision(const Vec3& point, const OBB& obb);
+
+	void Detect_Bullet_Terrain_Collisions();
 
 public:
 	
 	ObjectManager Room_ObjectManager;
-	
+	std::chrono::steady_clock::time_point _gameStartTime;
 
 public:
 
@@ -116,9 +130,13 @@ public:
 	void BroadCast_LobbyInfo();
 
 
+	void ChangeRoomState(ROOM_STATE state);
+
 	bool isStart = false;
 	bool isMax = false;
 	bool isActive = false;
+
+	
 
 	unsigned char RoomID;
 
@@ -127,7 +145,7 @@ private:
 	uint8 RoomMaxPlayerCnt;
 	uint8 RoomCurPlayerCnt;
 
-	uint8 Wait_LoadingCnt;
+	uint8 Wait_LoadingCnt = 0;
 
 	bool waitStartDelay = false;    // 2초 딜레이 시작 여부
 	float waitStartTimer = 0.0f;    // 딜레이 타이머 (초)
@@ -190,5 +208,10 @@ private:
 	uint8 BlueTeam_CurCount = 0;
 
 
+	float blueGauge = 0.f;
+	float redGauge = 0.f;
 
+	const float captureRadius = 500.f;
+	const float gaugePerTankPerSecond = 100.f / 300.f; // = 0.333f
+	bool isGameEnded = false;
 };

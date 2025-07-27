@@ -20,6 +20,7 @@ protected:
 	float Move_Speed;
 	float InitPos;
 
+
 	WEAPON_ID	myWeaponID;
 	uint8		OwnerID;
 	Vec3		hitPos;

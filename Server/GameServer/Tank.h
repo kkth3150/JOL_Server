@@ -41,16 +41,39 @@ public:
 	void SetTankState(const Matrix4x4& mat,float PosinAngle, float PotapAngle);
 	Tank_INFO GetTankState();
 	void UpdateOBBFromTransform();
+	OBB2D GetOBB2D() const;
+	void Damage(int dmg);
+	bool IsDead();
+	bool HasPassenger(uint8 playerID) const;
 	const OBB& Get_OBB() const { return _obbBox; }
+
+
+
+	void AddPassenger(const Room_Ready_Data& data)
+	{
+		passengers.push_back(data);
+	}
+
+	const std::vector<Room_Ready_Data>& GetPassengers() const
+	{
+		return passengers;
+	}
+
+	void SetSpawn(const Matrix4x4& mat, float PosinAngle, float PotapAngle);
+	bool isSpawned() { return Spawn; };
+	void SetUnSpawn() { Spawn = false; };
 
 	uint64				playerId = 0;
 private:
 	float				_posinAngle = 0.f;
 	float				_potapAngle = 0.f;
 	
+	
+	bool Spawn;
+
 	OBB					_obbBox;
-	   
-	TankSize MySize = { 380.f, 370.f,960.f};
+	std::vector<Room_Ready_Data> passengers;
+	TankSize MySize = { 3.8f, 3.7f, 9.6f };
 
 };
 

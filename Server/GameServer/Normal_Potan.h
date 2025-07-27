@@ -11,7 +11,7 @@ public:
 
 public:
 
-	void SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 OwnerID);
+	void SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 OwnerID,bool isBlueTeam);
 	uint8 GetOwnerID() { return OwnerID; };
 	void Process_Move(float deltaTime);
 
