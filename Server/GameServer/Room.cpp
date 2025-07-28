@@ -91,7 +91,9 @@ void Room::LateUpdate()
 					<< " | Y: " << info.TankTransform.m[3][1]
 					<< " | Z: " << info.TankTransform.m[3][2]
 					<< " | 포탑 각도: " << info.PotapAngle
-					<< " | 포신 각도: " << info.PosinAngle << std::endl;
+					<< " | 포신 각도: " << info.PosinAngle
+					<<info.TankHP <<std::endl;
+				
 			}
 		}
 	}
@@ -667,6 +669,7 @@ void Room::Detect_Bullet_Tank_Collisions()
 			Broadcast(effectBuffer);
 
 			bullet->SetDead();
+			int hp = targetTank->GetTankState().TankHP;
 			targetTank->Damage(25);
 
 			// 피격자에게 TANK_DAMAGED

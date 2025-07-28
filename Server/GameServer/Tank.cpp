@@ -4,6 +4,7 @@
 Tank::Tank()
 {
 	Spawn = true;
+	_hp = 100;
 }
 
 Tank::~Tank()
@@ -121,4 +122,5 @@ void Tank::SetSpawn(const Matrix4x4& mat, float PosinAngle, float PotapAngle)
 	_potapAngle = PotapAngle;
 	_posinAngle = PosinAngle;
 	Spawn = true;
+	_hp = 100;
 }
