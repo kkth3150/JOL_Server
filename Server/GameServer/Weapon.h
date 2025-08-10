@@ -23,7 +23,9 @@ protected:
 
 	WEAPON_ID	myWeaponID;
 	uint8		OwnerID;
+	uint8		OwnerTankIndex;
 	Vec3		hitPos;
+
 
 };
 

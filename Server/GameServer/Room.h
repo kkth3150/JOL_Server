@@ -49,6 +49,7 @@ public:
 	//for data
 	void Broadcast_PlayerData(Vec3 p1, Vec3 p2);
 	void Broadcast_All_TankState(uint8 PlayersCnt);
+	void Broadcast_All_DroneState();
 	void Broadcast_Hit_Weapon(Vec3 Pos);
 	void Broadcast(SendBufferRef sendBuffer);
 	void Broadcast_Tank_Data();
@@ -63,9 +64,14 @@ public:
 
 public:
 	//for PlayerSet
-	void SetTankState(int64 pID, const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl);
+	void SetTankState(int64 Tankindex, const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl);
 	void SetTankPosin(int64 index, const float& PotapAngle, const float& PosinAngle);
 	void SetTankPos(int64 index, const Matrix4x4& mat);
+
+	void SetDroneState(int64 DroneIndex, const Matrix4x4& mat);
+
+	void SetDroneRespawn(int64 index, const Matrix4x4& mat);
+
 	Tank_INFO GetTankState(int64 pID);
 
 	void SetTankRespawn(int64 index, const Matrix4x4& mat, const float& PotapAngle, const float& PosinAngle);
@@ -73,17 +79,21 @@ public:
 public:
 	//for GamePlay
 	void CreateBullet(int8 playerID,uint8 TankIndex, WEAPON_ID WeaponID, Vec3 Dir, Vec3 Pos);
+	void CreateBomb(uint8 playerID, uint8 TankIndex, uint8 AreaNum);
 	void Check_Bullet_Collision();
 	Tank* FindTankByPlayerId(uint8 playerId);
 	void UpdateCaptureGauge(float deltaTime);
 	void ResetRoom();
 	void OnTeamWin(bool isBlueWinner);
-	void Broadcast_All_TankStates_To_AllPlayers();
+	void Detect_Bomb_Tank_Collisions();
+	void Detect_Bomb_Terrain_Collisions();
+	void Broadcast_All_TankStates();
 	void Detect_Bullet_Tank_Collisions();
 	void HandleTankHit(Tank* tank, uint8 shooterPlayerID);
 	bool Check_OBB_Collision(const Vec3& point, const OBB& obb);
 
 	void Detect_Bullet_Terrain_Collisions();
+
 
 public:
 	

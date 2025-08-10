@@ -56,7 +56,6 @@ Tank_INFO Tank::GetTankState()
 
 	Tank_INFO myInfo = {
 
-		playerId,
 		TransformMatrix,
 		_posinAngle,
 		_potapAngle,

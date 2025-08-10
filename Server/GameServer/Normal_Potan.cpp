@@ -26,17 +26,13 @@ int Normal_Potan::Update(float deltaTime)
 void Normal_Potan::Late_Update()
 {
 
-    if (Check_Collision()) {
-        _isDead = true;
-    }
-
 }
 
 void Normal_Potan::Release()
 {
 }
 
-void Normal_Potan::SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 ID,bool blue)
+void Normal_Potan::SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 TankIndex ,uint8 ID,bool blue)
 {
 
     OwnerID = ID;
@@ -48,6 +44,7 @@ void Normal_Potan::SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 I
         direction.Z * speed
     };
     
+    OwnerTankIndex = TankIndex;
     _isBlue = blue;
 }
 

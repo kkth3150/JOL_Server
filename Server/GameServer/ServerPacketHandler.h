@@ -21,6 +21,9 @@ enum
 	S_GAME_WIN = 15,
 	S_GAME_LOSE = 16,
 	S_CAPTURE = 17,
+	S_ALL_DRONE_STATE = 18,
+	S_BULLET_ADD = 19,
+
 	C_LOGIN = 1001,
 	C_FINISH_LOADING = 1002,
 	C_KEYINPUT = 1003,
@@ -35,8 +38,13 @@ enum
 	C_START = 1012,
 	C_RESPAWN_TANK = 1013,
 	C_MYPOS = 1014,
-	C_MYPOSIN = 1015
+	C_MYPOSIN = 1015,
+	C_MYDRONEMOVE = 1016,
+	C_AIRDROP = 1017
+
 };
+
+
 
 struct BuffData
 {
@@ -52,9 +60,6 @@ public:
 	//For Recv
 	static void Handle_C_LOGIN(PacketSessionRef& session, BYTE* buffer, int32 len);
 	static void Handle_C_KEYINPUT(PacketSessionRef& session, BYTE* buffer, int32 len);
-	static void Handle_C_MOVEMENT(PacketSessionRef& session, BYTE* buffer, int32 len);
-	static void Handle_C_SHOT(PacketSessionRef& session, BYTE* buffer, int32 len);
-	static void Handle_C_TANK_RESPAWN(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 	//For Room
 	static void Handle_C_SHOW_ROOM(PacketSessionRef& session, BYTE* buffer, int32 len);
@@ -67,8 +72,17 @@ public:
 	
 	//For GamePlay
 	static void Handle_C_LOADING_FINISH(PacketSessionRef& session, BYTE* buffer, int32 len);
-	static void Handle_C_POSIN_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_MOVEMENT(PacketSessionRef& session, BYTE* buffer, int32 len);
 	static void Handle_C_POS_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_POSIN_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_SHOT(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_TANK_RESPAWN(PacketSessionRef& session, BYTE* buffer, int32 len);
+	
+	static void Handle_C_DRONE_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
+	static void Handle_C_AIRDROP(PacketSessionRef& session, BYTE* buffer, int32 len);
+
+
+
 
 
 	/*--------------
@@ -80,6 +94,8 @@ public:
 	static SendBufferRef Make_S_SUCCESS_ENTER_ROOM(uint16 id);
 	static SendBufferRef Make_S_WEAPON_HIT(float x, float y, float z);
 	static SendBufferRef Make_S_ALL_TANK_STATE(std::vector<Tank_INFO>& tanks);
+	static SendBufferRef Make_S_ALL_DRONE_STATE(std::vector<Drone_INFO>& drones);
+
 	static SendBufferRef Make_S_PLAYER_MOVED(uint8 id, Matrix4x4 mat, float PotapAngle, float PosinAngle);
 	static SendBufferRef Make_S_TANK_HIT(uint8 id);
 	static SendBufferRef Make_S_TANK_DAMAGED(uint8 id);
@@ -98,5 +114,7 @@ public:
 	static SendBufferRef Make_S_GAME_WIN(uint8 Dummy);
 	static SendBufferRef Make_S_GAME_LOSE(uint8 Dummy);
 	static SendBufferRef MAKE_S_CAPTURE(uint8 BULE, uint8  Red);
+	static SendBufferRef MAKE_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX,float PosY, float PosZ);
+
 };
 

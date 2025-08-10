@@ -54,7 +54,6 @@ public:
 
 
 	void SetTankByRoomIndex(int RoomID,int64 pID,const Matrix4x4& mat, const float& PosinAngle, const float& PotapAngl);
-
 	bool Check_StartGame(uint32 RoomID);
 
 	std::vector<Room_Data> Client_ShowRoom();

@@ -71,7 +71,12 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 	case C_MYPOSIN: 
 		Handle_C_POSIN_MOVE(session, buffer, len);
 		break;
+	case C_MYDRONEMOVE:
+		Handle_C_DRONE_MOVE(session, buffer, len);
+		break;
+	case C_AIRDROP:
 
+		break;
 	default:
 		break;
 	}
@@ -126,13 +131,7 @@ void ServerPacketHandler::Handle_C_KEYINPUT(PacketSessionRef& session, BYTE* buf
 	cout << "Player(" << id << ") Moved" << endl;
 
 
-	//GRoom.MovePlayer(id);
 
-
-	// 속도 설정.
-	// 교수님이 원하시는게 탱크 궤도.. 댐핑 -> 서버에서 구현한다 ?
-	//
-	// 따로 쓰레드 하나 만들어서 -> firstDown
 
 }
 
@@ -179,6 +178,7 @@ void ServerPacketHandler::Handle_C_SHOT(PacketSessionRef& session, BYTE* buffer,
 	BufferReader br(buffer, len);
 	PacketHeader header;
 	br >> header;
+
 	WEAPON_ID WeaponID = WEAPON_NPOTAN;
 	Vec3 InitPos;
 	Vec3 Normalized_Dir;
@@ -227,6 +227,57 @@ void ServerPacketHandler::Handle_C_TANK_RESPAWN(PacketSessionRef& session, BYTE*
 
 	}
 
+}
+
+void ServerPacketHandler::Handle_C_DRONE_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	BufferReader br(buffer, len);
+	PacketHeader header;
+	br >> header;
+
+	uint8 Droneindex;
+	br >> Droneindex;
+
+	Matrix4x4 mat;
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			br >> mat.m[i][j];
+		}
+	}
+
+	if (!C_Session->_players.empty()) {
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		Room_Manager::Get_Instance()->Get_Room(roomID)->SetDroneState(Droneindex, mat);
+
+	}
+}
+
+void ServerPacketHandler::Handle_C_AIRDROP(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	BufferReader br(buffer, len);
+	PacketHeader header;
+	br >> header;
+
+	uint8 TankIndex;
+	uint8 AreaIndex;
+	br >> TankIndex;
+	br >> AreaIndex;
+
+
+	if (!C_Session->_players.empty()) {
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		Room_Manager::Get_Instance()->Get_Room(roomID)->CreateBomb(playerID, TankIndex, AreaIndex);
+	}
 }
 
 void ServerPacketHandler::Handle_C_SHOW_ROOM(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -554,6 +605,23 @@ SendBufferRef ServerPacketHandler::MAKE_S_CAPTURE(uint8 BULE, uint8 RED)
 	return sendBuffer;
 }
 
+SendBufferRef ServerPacketHandler::MAKE_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX, float PosY, float PosZ)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << DirX << DirY << DirZ << PosX << PosY << PosZ;
+	header->size = bw.WriteSize();
+	header->id = S_BULLET_ADD;
+
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
 SendBufferRef ServerPacketHandler::Make_S_WEAPON_HIT(float x, float y, float z)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
@@ -581,10 +649,10 @@ SendBufferRef ServerPacketHandler::Make_S_ALL_TANK_STATE(std::vector<Tank_INFO>&
 
 	bw << static_cast<uint16>(tanks.size());
 
-	uint8 id = 0;
+	uint8 Tankindex = 0;
 	for (Tank_INFO& tank : tanks)
 	{
-		bw << id++;
+		bw << Tankindex++;
 
 		for (int i = 0; i < 4; ++i)
 		{
@@ -605,6 +673,39 @@ SendBufferRef ServerPacketHandler::Make_S_ALL_TANK_STATE(std::vector<Tank_INFO>&
 	sendBuffer->Close(bw.WriteSize());
 	
 	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_ALL_DRONE_STATE(std::vector<Drone_INFO>& drones)
+{
+
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+	bw << static_cast<uint16>(drones.size());
+	uint8 Droneindex = 0;
+
+	for (Drone_INFO& drone : drones)
+	{
+		bw << Droneindex++;
+
+		for (int i = 0; i < 4; ++i)
+		{
+			bw << drone.DroneTransform.m[i][0];
+			bw << drone.DroneTransform.m[i][1];
+			bw << drone.DroneTransform.m[i][2];
+			bw << drone.DroneTransform.m[i][3];
+		}
+		bw << drone.DroneHP;
+
+	}
+
+	header->size = bw.WriteSize();
+	header->id = S_ALL_DRONE_STATE;
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+
 }
 
 SendBufferRef ServerPacketHandler::Make_S_PLAYER_MOVED(uint8 Id, Matrix4x4 mat, float PotapAngle, float PosinAngle)
@@ -633,7 +734,7 @@ SendBufferRef ServerPacketHandler::Make_S_PLAYER_MOVED(uint8 Id, Matrix4x4 mat, 
 	return sendBuffer;
 }
 
-SendBufferRef ServerPacketHandler::Make_S_TANK_HIT(uint8 id)
+SendBufferRef ServerPacketHandler::Make_S_TANK_HIT(uint8 Damaged_Tank_Index)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
 
@@ -641,7 +742,7 @@ SendBufferRef ServerPacketHandler::Make_S_TANK_HIT(uint8 id)
 
 	PacketHeader* header = bw.Reserve<PacketHeader>();
 
-	bw << id;
+	bw << Damaged_Tank_Index;
 
 	header->size = bw.WriteSize();
 	header->id = S_TANK_HIT;
@@ -671,7 +772,7 @@ SendBufferRef ServerPacketHandler::Make_S_TANK_DAMAGED(uint8 id)
 	return sendBuffer;
 }
 
-SendBufferRef ServerPacketHandler::Make_S_TANK_DEAD(uint8 id)
+SendBufferRef ServerPacketHandler::Make_S_TANK_DEAD(uint8 Dead_Tank_index)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
 
@@ -679,7 +780,7 @@ SendBufferRef ServerPacketHandler::Make_S_TANK_DEAD(uint8 id)
 
 	PacketHeader* header = bw.Reserve<PacketHeader>();
 
-	bw << id;
+	bw << Dead_Tank_index;
 
 	header->size = bw.WriteSize();
 	header->id = S_TANK_DEAD;
@@ -690,7 +791,7 @@ SendBufferRef ServerPacketHandler::Make_S_TANK_DEAD(uint8 id)
 	return sendBuffer;
 }
 
-SendBufferRef ServerPacketHandler::Make_S_TANK_KILL(uint8 id)
+SendBufferRef ServerPacketHandler::Make_S_TANK_KILL(uint8 Dead_Tank_Index)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
 
@@ -698,7 +799,7 @@ SendBufferRef ServerPacketHandler::Make_S_TANK_KILL(uint8 id)
 
 	PacketHeader* header = bw.Reserve<PacketHeader>();
 
-	bw << id;
+	bw << Dead_Tank_Index;
 
 	header->size = bw.WriteSize();
 	header->id = S_TANK_KILL;

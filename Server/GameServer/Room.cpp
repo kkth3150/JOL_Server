@@ -10,6 +10,8 @@
 #include "Terrain_Manager.h"
 #include "SGlobal.h"
 #include "Collision_Manager.h"
+#include "Drone.h"
+#include "AirDrop_Bomb.h"
 
 Room::Room() 
 {
@@ -54,6 +56,9 @@ void Room::Update(float deltaTime)
 		Detect_Bullet_Tank_Collisions();
 		Detect_Bullet_Terrain_Collisions();
 		
+		Detect_Bomb_Terrain_Collisions();
+		Detect_Bomb_Tank_Collisions();
+
 	}
 		break;
 	default:
@@ -68,7 +73,8 @@ void Room::LateUpdate()
 	if (CurState == ROOM_INGAME)
 	{
 		Room_ObjectManager.Late_Update();
-		Broadcast_All_TankStates_To_AllPlayers();
+		Broadcast_All_TankStates();
+		Broadcast_All_DroneState();
 
 		auto now = std::chrono::steady_clock::now();
 		auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - _gameStartTime).count();
@@ -104,7 +110,7 @@ void Room::Release()
 
 }
 
-#pragma region ManageMantPlayer
+#pragma region ForReady
 
 void Room::Accept_Player(PlayerRef Player)
 {
@@ -231,7 +237,6 @@ bool Room::Change_Player_Info(uint64 playerID, const Room_Ready_Data& newData)
 	return true;
 }
 
-
 bool Room::Ready_Player(uint64 playerID)
 {
 	WRITE_LOCK;
@@ -256,8 +261,6 @@ void Room::Set_Player_Lobby_State(Room_Ready_Data data, uint64 PlayerID)
 	_Player_States[PlayerID] = data;
 
 }
-
-
 
 bool Room::Check_ClientLoading()
 {
@@ -304,14 +307,6 @@ bool Room::StartGame()
 
 }
 
-void Room::Broadcast_GameStart()
-{
-
-	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_GAME_START(1);
-	Broadcast(sendBuffer);
-}
-
-
 void Room::BroadCast_LobbyInfo()
 {
 	std::vector<Room_Ready_Data> playerStates;
@@ -332,6 +327,19 @@ void Room::BroadCast_LobbyInfo()
 	Broadcast(sendBuffer);
 }
 
+
+#pragma endregion Before Start
+
+
+void Room::Broadcast_GameStart()
+{
+
+	SendBufferRef sendBuffer = ServerPacketHandler::Make_S_GAME_START(1);
+	Broadcast(sendBuffer);
+}
+
+
+
 void Room::ChangeRoomState(ROOM_STATE state)
 {
 	if (state == ROOM_INGAME) {
@@ -346,10 +354,7 @@ void Room::ChangeRoomState(ROOM_STATE state)
 
 
 
-#pragma endregion ForLobby
-
-
-#pragma region function
+#pragma region ForGamePlay
 
 
 void Room::SpawnTanks()
@@ -376,27 +381,43 @@ void Room::SpawnTanks()
 		float y = 40.f;
 		float z = isBlue ? 50.f : 150.f;
 
-		Matrix4x4 mat = Matrix4x4::CreateTranslation(x, y, z);
+		Matrix4x4 tankMat = Matrix4x4::CreateTranslation(x, y, z);
+		Matrix4x4 droneMat = Matrix4x4::CreateTranslation(x, y + 50.f, z); // 탱크 위로 오프셋
 
 		// 탱크 생성
-		GameObject* tankObj = CAbstractFactory<Tank>::Create();
-		Tank* tank = dynamic_cast<Tank*>(tankObj);
-		tank->SetBlueTeam(isBlue);
-
-		// 플레이어 ID 설정 (대표값: 첫 번째 플레이어 ID)
-		if (!passengers.empty())
-			tank->playerId = passengers[0].PlayerID;
-
-		// 여기에 탑승자 전체 정보 추가
-		for (const auto& rider : passengers)
 		{
-			tank->AddPassenger(rider); //Tank에 정의된 함수 사용
+			GameObject* tankObj = CAbstractFactory<Tank>::Create();
+			Tank* tank = dynamic_cast<Tank*>(tankObj);
+			tank->SetBlueTeam(isBlue);
+
+			if (!passengers.empty())
+				tank->playerId = passengers[0].PlayerID; // 대표값
+
+			for (const auto& rider : passengers)
+				tank->AddPassenger(rider);
+
+			tank->SetTankState(tankMat, 0.f, 0.f); // 기존 시그니처 그대로 사용
+			Room_ObjectManager.Add_Object(OBJ_TANK, tank);
 		}
 
-		tank->SetTankState(mat, 0.f, 0.f);
+		// ── 드론 생성(탱크와 동일 인덱스로 1:1 매칭) ───────────────
+		{
+			GameObject* droneObj = CAbstractFactory<Drone>::Create();
+			Drone* drone = dynamic_cast<Drone*>(droneObj);
+			drone->SetBlueTeam(isBlue);
 
-		Room_ObjectManager.Add_Object(OBJ_TANK, tank);
+			for (const auto& rider : passengers)
+				drone->AddPassenger(rider);
 
+			// 드론도 탱크와 동일한 state 함수가 있다고 했으니 동일하게 호출
+			drone->SetDroneState(droneMat);
+
+			// (선택) 상호 참조 세팅이 있다면 인덱스 교차 기록
+			// drone->SetOwnerTankIndex(tankIndex);
+			// 또는 tank->SetDroneIndex(tankIndex);
+
+			Room_ObjectManager.Add_Object(OBJ_DRONE, drone);
+		}
 		tankIndex++;
 	}
 }
@@ -411,7 +432,7 @@ void Room::Change_Tank_INFO(int64 pID, const Matrix4x4& mat, const float& PotapA
 }
 
 
-void Room::Broadcast_All_TankStates_To_AllPlayers()
+void Room::Broadcast_All_TankStates()
 {
 	std::vector<Tank_INFO> tankStates;
 
@@ -428,7 +449,6 @@ void Room::Broadcast_All_TankStates_To_AllPlayers()
 					continue;
 
 				Tank_INFO info = tank->GetTankState();
-				info.id = static_cast<uint8>(i); // 인덱스를 id로 설정
 				tankStates.push_back(info);
 			}
 		}
@@ -442,6 +462,35 @@ void Room::Broadcast_All_TankStates_To_AllPlayers()
 	}
 }
 
+void Room::Broadcast_All_DroneState()
+{
+	std::vector<Drone_INFO> DroneStates;
+
+	// 1. 모든 드론 상태 수집
+	{
+		READ_LOCK;
+		auto DroneList = Room_ObjectManager.Get_List(OBJ_DRONE);
+		if (DroneList)
+		{
+			for (size_t i = 0; i < DroneList->size(); ++i)
+			{
+				Drone* drone = dynamic_cast<Drone*>((*DroneList)[i]);
+				if (!DroneList)
+					continue;
+
+				Drone_INFO info = drone->GetDroneState();
+				DroneStates.push_back(info);
+			}
+		}
+	}
+
+	// 2. 패킷 생성 및 모든 플레이어에게 전송
+	if (!DroneStates.empty())
+	{
+		auto sendBuffer = ServerPacketHandler::Make_S_ALL_DRONE_STATE(DroneStates);
+		Broadcast(sendBuffer);
+	}
+}
 
 void Room::Broadcast_Hit_Weapon(Vec3 Pos)
 {
@@ -562,7 +611,7 @@ bool Room::Wait_Full(uint16 MaxPlayer)
 		
 }
 
-
+#pragma endregion ForDebug
 
 void Room::SetTankState(int64 index, const Matrix4x4& mat, const float& PotapAngle, const float& PosinAngle)
 {
@@ -575,18 +624,24 @@ void Room::SetTankPosin(int64 index, const float& PotapAngle, const float& Posin
 	WRITE_LOCK;
 	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetTankOnlyPosin(PosinAngle, PotapAngle);
 }
+
 void Room::SetTankPos(int64 index, const Matrix4x4& mat) {
 
 	WRITE_LOCK;
 	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetTankOnlyPos(mat);
 }
 
-
-Tank_INFO Room::GetTankState(int64 index)
+void Room::SetDroneState(int64 DroneIndex, const Matrix4x4& mat)
 {
-	READ_LOCK;
-	return dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->GetTankState();
 
+	WRITE_LOCK;
+	dynamic_cast<Drone*>((*Room_ObjectManager.Get_List(OBJ_DRONE))[DroneIndex])->SetDroneState(mat);
+}
+
+void Room::SetDroneRespawn(int64 index, const Matrix4x4& mat)
+{
+	WRITE_LOCK;
+	dynamic_cast<Drone*>((*Room_ObjectManager.Get_List(OBJ_DRONE))[index])->SetSpawn(mat);
 }
 
 void Room::SetTankRespawn(int64 index, const Matrix4x4& mat, const float& PotapAngle, const float& PosinAngle)
@@ -595,25 +650,29 @@ void Room::SetTankRespawn(int64 index, const Matrix4x4& mat, const float& PotapA
 	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetSpawn(mat, PotapAngle,PosinAngle);
 }
 
+Tank_INFO Room::GetTankState(int64 index)
+{
+	READ_LOCK;
+	return dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->GetTankState();
+
+}
+
 void Room::CreateBullet(int8 pID, uint8 tankindex,WEAPON_ID ID, Vec3 Dir, Vec3 Pos)
 {
 	WRITE_LOCK;
-
-	auto it = _Player_States.find(ID);
-	if (it == _Player_States.end())
-		return;
-
-	bool isBlueTeam = it->second.Team;
 
 	switch (ID) {
 
 	case WEAPON_NPOTAN:
 	{
-
 		bool isBlueTeam = dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[tankindex])->isBlueTeam();
 		GameObject* TempBullet = CAbstractFactory<Normal_Potan>::Create();
-		dynamic_cast<Normal_Potan*>(TempBullet)->SetInitData(Dir, Pos, pID, isBlueTeam);
+		dynamic_cast<Normal_Potan*>(TempBullet)->SetInitData(Dir, Pos, tankindex ,pID, isBlueTeam);
 		Room_ObjectManager.Add_Object(OBJ_WEAPON, TempBullet);
+
+		auto sendBuffer = ServerPacketHandler::MAKE_S_BULLETADD(Dir.X, Dir.Y, Dir.Z, Pos.X,Pos.Y,Pos.Z);
+		Broadcast(sendBuffer);
+
 	}
 	break;
 
@@ -627,7 +686,76 @@ void Room::CreateBullet(int8 pID, uint8 tankindex,WEAPON_ID ID, Vec3 Dir, Vec3 P
 	}
 }
 
-#pragma endregion ForDebug
+void Room::CreateBomb(uint8 playerID, uint8 TankIndex, uint8 AreaNum)
+{
+	WRITE_LOCK;
+
+	if (AreaNum < 1 || AreaNum > 9) return;
+
+	// 전역 X 범위(램핑 기준)
+	constexpr float WORLD_MIN_X = -500.f;
+	constexpr float WORLD_MAX_X = 500.f;
+
+	// Area 경계
+	float minX, maxX, minZ, maxZ;
+	switch (AreaNum)
+	{
+	case 1: minX = -500; maxX = -167; minZ = -500; maxZ = -167; break;
+	case 2: minX = -167; maxX = 167; minZ = -500; maxZ = -167; break;
+	case 3: minX = 167; maxX = 500; minZ = -500; maxZ = -167; break;
+
+	case 4: minX = -500; maxX = -167; minZ = -167; maxZ = 167; break;
+	case 5: minX = -167; maxX = 167; minZ = -167; maxZ = 167; break;
+	case 6: minX = 167; maxX = 500; minZ = -167; maxZ = 167; break;
+
+	case 7: minX = -500; maxX = -167; minZ = 167; maxZ = 500; break;
+	case 8: minX = -167; maxX = 167; minZ = 167; maxZ = 500; break;
+	case 9: minX = 167; maxX = 500; minZ = 167; maxZ = 500; break;
+	default: return;
+	}
+
+	// 배치 파라미터
+	constexpr int   bombsPerLine = 6;   // 줄당 6개 → 총 12개
+	constexpr float PAD = 10.f;
+	constexpr float Z_OFFSET = 40.f; // 두 줄 간격
+	constexpr float BASE_ALT = 300.f; // 세계 좌측 끝에서의 기본 고도
+	constexpr float RAMP_ALT = 300.f; // 세계 우측 끝에서 추가되는 고도
+	const bool leftToRight = true;       // 비행 방향(좌→우). 반대면 false
+
+	const float leftX = minX + PAD;
+	const float rightX = maxX - PAD;
+	const float centerZ = (minZ + maxZ) * 0.5f;
+
+	for (int line = 0; line < 2; ++line) // 0: 윗줄, 1: 아랫줄
+	{
+		const float zLine = centerZ + (line == 0 ? -Z_OFFSET : Z_OFFSET);
+
+		for (int i = 0; i < bombsPerLine; ++i)
+		{
+			// Area 내부에서 X 등분(고정 위치)
+			const float tLocal = (bombsPerLine == 1) ? 0.f : float(i) / float(bombsPerLine - 1);
+			const float x = leftX + (rightX - leftX) * tLocal;
+
+			// 전역 X 기준 고도 램핑(지형 무시)
+			float tGlobal = (x - WORLD_MIN_X) / (WORLD_MAX_X - WORLD_MIN_X); // 01
+			tGlobal = std::clamp(tGlobal, 0.f, 1.f);
+			if (!leftToRight) tGlobal = 1.f - tGlobal;
+
+			const float y = BASE_ALT + RAMP_ALT * tGlobal;
+
+			Vec3 pos{ x, y, zLine };
+
+			GameObject* obj = CAbstractFactory<AirDrop_Bomb>::Create();
+			if (auto* bomb = dynamic_cast<AirDrop_Bomb*>(obj))
+				bomb->SetInitData(playerID, TankIndex, pos);
+
+			Room_ObjectManager.Add_Object(OBJ_BOMB, obj); // 필요시 카테고리 조정
+		}
+	}
+
+}
+
+
 
 #pragma region function
 
@@ -669,7 +797,6 @@ void Room::Detect_Bullet_Tank_Collisions()
 			Broadcast(effectBuffer);
 
 			bullet->SetDead();
-			int hp = targetTank->GetTankState().TankHP;
 			targetTank->Damage(25);
 
 			// 피격자에게 TANK_DAMAGED
@@ -683,8 +810,14 @@ void Room::Detect_Bullet_Tank_Collisions()
 				}
 			}
 
+			Tank* shooterTank = nullptr;
+			{
+				const uint8 ownerIdx = bullet->GetOwnerTankIndex();
+				if (ownerIdx < tankList->size())
+					shooterTank = dynamic_cast<Tank*>((*tankList)[ownerIdx]);
+			}
+
 			// 공격자에게 TANK_HIT
-			Tank* shooterTank = FindTankByPlayerId(shooterPlayerID);
 			if (shooterTank)
 			{
 				for (const Room_Ready_Data& shooter : shooterTank->GetPassengers())
@@ -722,23 +855,6 @@ void Room::Detect_Bullet_Tank_Collisions()
 			break;
 		}
 	}
-}
-
-bool Room::Check_OBB_Collision(const Vec3& point, const OBB& obb)
-{
-	Vec3 dir = { point.X - obb.center.X, point.Y - obb.center.Y, point.Z - obb.center.Z };
-
-	for (int i = 0; i < 3; ++i)
-	{
-		float dist = dir.X * obb.axis[i].X + dir.Y * obb.axis[i].Y + dir.Z * obb.axis[i].Z;
-
-		float halfSize = (i == 0) ? obb.halfSize.X : (i == 1) ? obb.halfSize.Y : obb.halfSize.Z;
-
-		if (fabs(dist) > halfSize)
-			return false;
-	}
-
-	return true;
 }
 
 void Room::Detect_Bullet_Terrain_Collisions()
@@ -791,32 +907,7 @@ void Room::Detect_Bullet_Terrain_Collisions()
 }
 
 
-void Room::Check_Bullet_Collision()
-{
-	auto bulletList = Room_ObjectManager.Get_List(OBJ_WEAPON);
-	if (bulletList == nullptr)
-		return;
-
-	READ_LOCK;
-
-	for (GameObject* obj : *bulletList)
-	{
-		if (!obj) continue;
-
-		Normal_Potan* bullet = dynamic_cast<Normal_Potan*>(obj);
-		if (bullet && bullet->isHit())
-		{
-			Vec3 hitPos = bullet->GetPos();
-			Broadcast_Hit_Weapon(hitPos);
-		}
-	}
-
-}
-
-
-
 #pragma endregion for_Collision
-
 
 
 
@@ -911,7 +1002,6 @@ void Room::ResetRoom()
 	/*BroadCast_LobbyInfo();*/
 }
 
-
 void Room::OnTeamWin(bool isBlueWinner)
 {
 	isGameEnded = true;
@@ -942,4 +1032,113 @@ void Room::OnTeamWin(bool isBlueWinner)
 			std::this_thread::sleep_for(std::chrono::seconds(3));
 			this->ResetRoom();
 		}).detach();
+}
+
+
+void Room::Detect_Bomb_Tank_Collisions()
+{
+	auto bombList = Room_ObjectManager.Get_List(OBJ_BOMB); // Bomb 전용 컨테이너 권장
+	auto tankList = Room_ObjectManager.Get_List(OBJ_TANK);
+	if (!bombList || !tankList) return;
+
+	for (GameObject* objBomb : *bombList)
+	{
+		if (!objBomb) continue;
+
+		AirDrop_Bomb* bomb = dynamic_cast<AirDrop_Bomb*>(objBomb);
+		if (!bomb || bomb->isHit()) continue;
+
+		Vec3 bombPos = bomb->GetPos();
+
+		// Bomb의 오너 정보 사용 (아군/적군 무관 타격)
+		const uint8 ownerPlayerID = bomb->GetOwnerID();
+		const uint8 ownerTankIdx = bomb->GetOwnerTankIndex();
+
+		// (선택) 공격자 탱크 포인터 미리 확보
+		Tank* shooterTank = nullptr;
+		if (ownerTankIdx < (uint8)tankList->size())
+			shooterTank = dynamic_cast<Tank*>((*tankList)[ownerTankIdx]);
+
+		for (size_t i = 0; i < tankList->size(); ++i)
+		{
+			Tank* targetTank = dynamic_cast<Tank*>((*tankList)[i]);
+			if (!targetTank) continue;
+			if (!targetTank->isSpawned()) continue;
+
+			// 팀 구분 없음: 포인트-스피어 간단 충돌
+			if (!CollisionManager::GetInstance()->CheckCollision_Point_Sphere(bombPos, targetTank->GetPos(), 5.0f))
+				continue;
+
+			// 1) 이펙트 브로드캐스트
+			{
+				auto effectBuffer = ServerPacketHandler::Make_S_WEAPON_HIT(bombPos.X, bombPos.Y, bombPos.Z);
+				Broadcast(effectBuffer);
+			}
+
+			// 2) Bomb 제거(한 번 맞으면 끝)
+			bomb->SetDead();
+
+			// 3) 데미지 적용 (원하는 수치로)
+			targetTank->Damage(25);
+
+			// 4) 피격자(탑승자 전원)에게 TANK_DAMAGED
+			for (const Room_Ready_Data& damagedRider : targetTank->GetPassengers())
+			{
+				auto it = _Players.find(damagedRider.PlayerID);
+				if (it != _Players.end() && it->second && it->second->OwenerSession)
+				{
+					auto buffer = ServerPacketHandler::Make_S_TANK_DAMAGED((uint8)i); // i = 타겟 탱크 인덱스
+					it->second->OwenerSession->Send(buffer);
+				}
+			}
+
+			// 5) 사망 시: DEAD 브로드캐스트 + (있다면) 오너에게 KILL
+			if (targetTank->IsDead())
+			{
+				targetTank->SetUnSpawn();
+
+				auto bufferDead = ServerPacketHandler::Make_S_TANK_DEAD((uint8)i);
+				Broadcast(bufferDead);
+
+				if (shooterTank)
+				{
+					auto bufferKill = ServerPacketHandler::Make_S_TANK_KILL((uint8)i);
+					for (const Room_Ready_Data& killer : shooterTank->GetPassengers())
+					{
+						auto it = _Players.find(killer.PlayerID);
+						if (it != _Players.end() && it->second && it->second->OwenerSession)
+						{
+							it->second->OwenerSession->Send(bufferKill);
+						}
+					}
+				}
+			}
+
+			break; // 한 폭탄으로 하나 맞췄으면 종료
+		}
+	}
+}
+
+
+void Room::Detect_Bomb_Terrain_Collisions()
+{
+	auto bombList = Room_ObjectManager.Get_List(OBJ_BOMB);
+	if (!bombList) return;
+
+	for (GameObject* objBomb : *bombList)
+	{
+		if (!objBomb) continue;
+
+		AirDrop_Bomb* bomb = dynamic_cast<AirDrop_Bomb*>(objBomb);
+		if (!bomb || bomb->isHit()) continue;
+
+		if (CollisionManager::GetInstance()->Check_Terrain_Collision(bomb))
+		{
+			Vec3 hitPos = bomb->GetPos();
+			bomb->SetDead();
+
+			auto sendBuffer = ServerPacketHandler::Make_S_WEAPON_HIT(hitPos.X, hitPos.Y, hitPos.Z);
+			Broadcast(sendBuffer);
+		}
+	}
 }

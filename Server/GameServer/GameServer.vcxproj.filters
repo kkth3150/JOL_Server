@@ -46,9 +46,6 @@
     <Filter Include="Object_Manager\GameObjects\Vec3Object\Weapon">
       <UniqueIdentifier>{ba75d8b2-4942-4e86-9ba3-ef25331e03f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object_Manager\GameObjects\Vec3Object\Weapon\Normal_Bullet">
-      <UniqueIdentifier>{59e7d1dc-9715-4a78-9491-829d653f4e85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object_Manager\GameObjects\Vec3Object\Weapon\Normal_Potan">
       <UniqueIdentifier>{96f70672-ce31-4bbc-907e-0393b8e36897}</UniqueIdentifier>
     </Filter>
@@ -63,6 +60,12 @@
     </Filter>
     <Filter Include="Object_Manager\GameObjects\Vec2Object\Tree">
       <UniqueIdentifier>{125d7a00-d63e-457b-bd7f-3f6cd5b7cc23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object_Manager\GameObjects\TransformObject\Drone">
+      <UniqueIdentifier>{807f11ff-3609-473f-b0e4-d3e5d31735d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object_Manager\GameObjects\Vec3Object\Weapon\AirDrop_Bomb">
+      <UniqueIdentifier>{59e7d1dc-9715-4a78-9491-829d653f4e85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +120,12 @@
     </ClCompile>
     <ClCompile Include="Tree.cpp">
       <Filter>Object_Manager\GameObjects\Vec2Object\Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>Object_Manager\GameObjects\TransformObject\Drone</Filter>
+    </ClCompile>
+    <ClCompile Include="AirDrop_Bomb.cpp">
+      <Filter>Object_Manager\GameObjects\Vec3Object\Weapon\AirDrop_Bomb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +183,12 @@
     </ClInclude>
     <ClInclude Include="Tree.h">
       <Filter>Object_Manager\GameObjects\Vec2Object\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
+      <Filter>Object_Manager\GameObjects\TransformObject\Drone</Filter>
+    </ClInclude>
+    <ClInclude Include="AirDrop_Bomb.h">
+      <Filter>Object_Manager\GameObjects\Vec3Object\Weapon\AirDrop_Bomb</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -314,6 +314,7 @@ void Room_Manager::SetTankByRoomIndex(int RoomID, int64 pID, const Matrix4x4& ma
     room->SetTankState(pID,mat,PosinAngle,PotapAngl);
 }
 
+
 bool Room_Manager::Check_StartGame(uint32 RoomID)
 {
     if (RoomID >= vRooms.size())

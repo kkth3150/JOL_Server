@@ -11,7 +11,7 @@ public:
 
 public:
 
-	void SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 OwnerID,bool isBlueTeam);
+	void SetInitData(Vec3& normalizedDirection, Vec3& startPos,uint8 TankIndex ,uint8 OwnerID,bool isBlueTeam);
 	uint8 GetOwnerID() { return OwnerID; };
 	void Process_Move(float deltaTime);
 
@@ -25,9 +25,11 @@ public:
 	bool Collision_Terrain();
 	void SetDead() { _isDead = true; };
 
+	uint8		GetOwnerTankIndex() { return OwnerTankIndex; };
+
 private:
 	USE_LOCK;
-	float speed = 300.f;
+	float speed = 150.f;
 
 	bool isActive = false;
 	Vec3 direction;
