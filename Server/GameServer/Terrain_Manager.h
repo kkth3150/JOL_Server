@@ -1,4 +1,10 @@
 #pragma once
+
+struct Vector4 {
+    float x, y, z, w;
+};
+
+
 class Terrain_Manager
 {
 public:
@@ -15,8 +21,12 @@ private:
 public:
 
 	bool Read_Map(const std::string& filePath, int width, int height, float cellSpacing);
-    float Get_Height(float worldX, float worldZ) const;
+    float Get_Height(float worldX, float worldZ);
     void Show_MapData();
+
+    Vector4 PlaneFromPoints(const Vector4& p1, const Vector4& p2, const Vector4& p3);
+
+    //float Get_Terrain_Heights(float x, float z);
 
 private:
 

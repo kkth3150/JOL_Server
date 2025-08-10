@@ -11,9 +11,19 @@
 	For Object
 ----------------*/
 
+struct AirDropRect {
+    float Left;
+    float Right;
+    float Top;
+    float Bottom;
+};
+
+
+
+
 enum ObjectID {
 
-	OBJ_TANK, OBJ_WEAPON ,OBJ_END
+	OBJ_TANK, OBJ_DRONE ,OBJ_BOMB,OBJ_WEAPON ,OBJ_END
 
 };
 
@@ -191,13 +201,20 @@ struct OBB
 
 struct Tank_INFO {
 
-	uint8		id;
 	Matrix4x4	TankTransform;
 	float		PosinAngle;
 	float		PotapAngle;
 	uint8		TankHP;
 
 };
+
+struct Drone_INFO {
+
+    Matrix4x4	DroneTransform;
+    uint8		DroneHP;
+
+};
+
 
 struct OBB2D
 {
@@ -214,7 +231,7 @@ struct OBB2D
 
 enum WEAPON_ID {
 
-	WEAPON_NPOTAN, WEAPON_NBULLET, WEAPON_END
+	WEAPON_NPOTAN, WEAPON_BOMB ,WEAPON_NBULLET, WEAPON_END
 
 };
 

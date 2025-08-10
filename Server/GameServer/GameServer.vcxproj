@@ -167,7 +167,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AirDrop_Bomb.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
+    <ClCompile Include="Drone.cpp" />
     <ClCompile Include="GameServer.cpp" />
     <ClCompile Include="ClientSession.cpp" />
     <ClCompile Include="ClientSessionManager.cpp" />
@@ -193,10 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
+    <ClInclude Include="AirDrop_Bomb.h" />
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="ClientSession.h" />
     <ClInclude Include="ClientSessionManager.h" />
+    <ClInclude Include="Drone.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Normal_Potan.h" />
     <ClInclude Include="ObjectManager.h" />
