@@ -19,7 +19,7 @@ protected:
 
 	Vec3	_myPos;
 	Size	_mySize;
-	bool	_isDead;
+	bool	_isDead = false;
 	uint8	_hp;
 	bool	_isBlue;
 public:

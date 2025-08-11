@@ -1,6 +1,12 @@
 #pragma once
 #include "TransformObject.h"
 
+struct DroneRot {
+	float Yaw;
+	float Roll;
+	float Pitch;
+};
+
 class Drone : public TransformObject
 {
 
@@ -16,7 +22,8 @@ public:
 
 public:
 
-	void SetDroneState(const Matrix4x4& mat);
+	void SetDroneState(Vec3 Pos, float Yaw, float Roll, float Pitch);
+	Vec3 GetDronePos();
 	Drone_INFO GetDroneState();
 	void Damage(int dmg);
 
@@ -38,5 +45,7 @@ public:
 	std::vector<Room_Ready_Data> passengers;
 	bool Spawn;
 
+	DroneRot My_DroneRot;
+	Vec3	My_DronePos;
 };
 

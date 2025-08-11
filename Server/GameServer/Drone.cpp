@@ -29,9 +29,20 @@ void Drone::Release()
 {
 }
 
-void Drone::SetDroneState(const Matrix4x4& mat)
+void Drone::SetDroneState(Vec3 Pos, float Yaw, float Roll, float Pitch)
 {
+	Matrix4x4 mat = __super::GetTransform();
+	mat.m[3][0] = Pos.X;
+	mat.m[3][1] = Pos.Y;
+	mat.m[3][2] = Pos.Z;
+
+	My_DronePos = Pos;
+
 	__super::SetTransform(mat);
+
+	My_DroneRot.Yaw = Yaw;
+	My_DroneRot.Roll = Roll;
+	My_DroneRot.Pitch = Pitch;
 
 }
 
@@ -39,7 +50,10 @@ Drone_INFO Drone::GetDroneState()
 {
 	Drone_INFO myInfo = {
 
-		TransformMatrix,
+		My_DronePos,
+		My_DroneRot.Yaw,
+		My_DroneRot.Roll,
+		My_DroneRot.Pitch,
 		_hp
 
 	};

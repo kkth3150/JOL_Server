@@ -23,6 +23,7 @@ enum
 	S_CAPTURE = 17,
 	S_ALL_DRONE_STATE = 18,
 	S_BULLET_ADD = 19,
+	S_AIRDROP_INDEX = 20,
 
 	C_LOGIN = 1001,
 	C_FINISH_LOADING = 1002,
@@ -113,8 +114,9 @@ public:
 	static SendBufferRef Make_S_ALL_PLAYER_LOADING_FINISH(uint8 Dummy);
 	static SendBufferRef Make_S_GAME_WIN(uint8 Dummy);
 	static SendBufferRef Make_S_GAME_LOSE(uint8 Dummy);
-	static SendBufferRef MAKE_S_CAPTURE(uint8 BULE, uint8  Red);
-	static SendBufferRef MAKE_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX,float PosY, float PosZ);
+	static SendBufferRef Make_S_CAPTURE(uint8 BULE, uint8  Red);
+	static SendBufferRef Make_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX,float PosY, float PosZ);
+	static SendBufferRef Make_S_AIRDROP(uint8 AreaIndex);
 
 };
 

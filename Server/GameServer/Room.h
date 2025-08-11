@@ -68,7 +68,7 @@ public:
 	void SetTankPosin(int64 index, const float& PotapAngle, const float& PosinAngle);
 	void SetTankPos(int64 index, const Matrix4x4& mat);
 
-	void SetDroneState(int64 DroneIndex, const Matrix4x4& mat);
+	void SetDroneState(int64 DroneIndex, const Vec3 Pos, float Yaw, float Roll, float Pitch);
 
 	void SetDroneRespawn(int64 index, const Matrix4x4& mat);
 

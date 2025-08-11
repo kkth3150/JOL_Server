@@ -62,6 +62,12 @@ void Normal_Potan::Process_Move(float deltaTime)
     _myPos.Y += velocity.Y * deltaTime;
     _myPos.Z += velocity.Z * deltaTime;
 
+    const float BOUND_LIMIT = 1900.f; // �Ӱ谪
+    if (_myPos.X < -BOUND_LIMIT || _myPos.X > BOUND_LIMIT ||
+        _myPos.Z < -BOUND_LIMIT || _myPos.Z > BOUND_LIMIT)
+    {
+        _isDead = true;
+    }
 }
 
 bool Normal_Potan::Check_Collision()
