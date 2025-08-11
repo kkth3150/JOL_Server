@@ -75,7 +75,7 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 		Handle_C_DRONE_MOVE(session, buffer, len);
 		break;
 	case C_AIRDROP:
-
+		Handle_C_AIRDROP(session, buffer, len);
 		break;
 	default:
 		break;
@@ -240,20 +240,16 @@ void ServerPacketHandler::Handle_C_DRONE_MOVE(PacketSessionRef& session, BYTE* b
 	uint8 Droneindex;
 	br >> Droneindex;
 
-	Matrix4x4 mat;
-	for (int i = 0; i < 4; ++i)
-	{
-		for (int j = 0; j < 4; ++j)
-		{
-			br >> mat.m[i][j];
-		}
-	}
+	float PosX, PosY, PosZ, Yaw, Roll, Pitch;
+
+	br >> PosX >> PosY  >> PosZ >> Yaw >> Roll >> Pitch;
+	Vec3 Pos = { PosX ,PosY, PosZ };
+
 
 	if (!C_Session->_players.empty()) {
 		uint64 playerID = C_Session->_players[0]->playerID;
 		int roomID = C_Session->_players[0]->RoomNum;
-
-		Room_Manager::Get_Instance()->Get_Room(roomID)->SetDroneState(Droneindex, mat);
+		Room_Manager::Get_Instance()->Get_Room(roomID)->SetDroneState(Droneindex, Pos, Yaw, Roll, Pitch);
 
 	}
 }
@@ -587,7 +583,7 @@ SendBufferRef ServerPacketHandler::Make_S_GAME_LOSE(uint8 Dummy)
 	return sendBuffer;
 }
 
-SendBufferRef ServerPacketHandler::MAKE_S_CAPTURE(uint8 BULE, uint8 RED)
+SendBufferRef ServerPacketHandler::Make_S_CAPTURE(uint8 BULE, uint8 RED)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
 
@@ -605,7 +601,7 @@ SendBufferRef ServerPacketHandler::MAKE_S_CAPTURE(uint8 BULE, uint8 RED)
 	return sendBuffer;
 }
 
-SendBufferRef ServerPacketHandler::MAKE_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX, float PosY, float PosZ)
+SendBufferRef ServerPacketHandler::Make_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX, float PosY, float PosZ)
 {
 	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
 
@@ -620,6 +616,24 @@ SendBufferRef ServerPacketHandler::MAKE_S_BULLETADD(float DirX, float DirY, floa
 	sendBuffer->Close(bw.WriteSize());
 
 	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_AIRDROP(uint8 AreaIndex)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << AreaIndex;
+
+	header->size = bw.WriteSize();
+	header->id = S_AIRDROP_INDEX;
+
+	sendBuffer->Close(bw.WriteSize());
+	return sendBuffer;
+
 }
 
 SendBufferRef ServerPacketHandler::Make_S_WEAPON_HIT(float x, float y, float z)
@@ -689,13 +703,8 @@ SendBufferRef ServerPacketHandler::Make_S_ALL_DRONE_STATE(std::vector<Drone_INFO
 	{
 		bw << Droneindex++;
 
-		for (int i = 0; i < 4; ++i)
-		{
-			bw << drone.DroneTransform.m[i][0];
-			bw << drone.DroneTransform.m[i][1];
-			bw << drone.DroneTransform.m[i][2];
-			bw << drone.DroneTransform.m[i][3];
-		}
+		bw << drone.DroneTransform.X << drone.DroneTransform.Y << drone.DroneTransform.Z;
+		bw << drone.Yaw << drone.Roll << drone.Pitch;
 		bw << drone.DroneHP;
 
 	}

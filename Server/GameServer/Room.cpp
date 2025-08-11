@@ -101,6 +101,29 @@ void Room::LateUpdate()
 					<<info.TankHP <<std::endl;
 				
 			}
+
+
+		}
+
+		auto droneList = Room_ObjectManager.Get_List(OBJ_DRONE);
+		if (droneList)
+		{
+			std::cout << "---- 현재 프레임 드론 위치 ----" << std::endl;
+			for (size_t i = 0; i < droneList->size(); ++i)
+			{
+				Drone* drone = dynamic_cast<Drone*>((*droneList)[i]);
+				if (!drone) continue;
+
+				Drone_INFO dInfo = drone->GetDroneState();
+				std::cout << "드론 인덱스: " << i
+					<< " | X: " << dInfo.DroneTransform.X
+					<< " | Y: " << dInfo.DroneTransform.Y
+					<< " | Z: " << dInfo.DroneTransform.Z
+					<< " | Yaw: " << dInfo.Yaw
+					<< " | Roll: " << dInfo.Roll
+					<< " | Pitch: " << dInfo.Pitch
+					<< std::endl;
+			}
 		}
 	}
 }
@@ -410,7 +433,8 @@ void Room::SpawnTanks()
 				drone->AddPassenger(rider);
 
 			// 드론도 탱크와 동일한 state 함수가 있다고 했으니 동일하게 호출
-			drone->SetDroneState(droneMat);
+			Vec3 Temp = { x, y + 50.f, z };
+			drone->SetDroneState(Temp,0,0,0);
 
 			// (선택) 상호 참조 세팅이 있다면 인덱스 교차 기록
 			// drone->SetOwnerTankIndex(tankIndex);
@@ -631,11 +655,11 @@ void Room::SetTankPos(int64 index, const Matrix4x4& mat) {
 	dynamic_cast<Tank*>((*Room_ObjectManager.Get_List(OBJ_TANK))[index])->SetTankOnlyPos(mat);
 }
 
-void Room::SetDroneState(int64 DroneIndex, const Matrix4x4& mat)
+void Room::SetDroneState(int64 DroneIndex, const Vec3 Pos, float Yaw, float Roll, float Pitch)
 {
 
 	WRITE_LOCK;
-	dynamic_cast<Drone*>((*Room_ObjectManager.Get_List(OBJ_DRONE))[DroneIndex])->SetDroneState(mat);
+	dynamic_cast<Drone*>((*Room_ObjectManager.Get_List(OBJ_DRONE))[DroneIndex])->SetDroneState(Pos, Yaw, Roll, Pitch);
 }
 
 void Room::SetDroneRespawn(int64 index, const Matrix4x4& mat)
@@ -670,7 +694,7 @@ void Room::CreateBullet(int8 pID, uint8 tankindex,WEAPON_ID ID, Vec3 Dir, Vec3 P
 		dynamic_cast<Normal_Potan*>(TempBullet)->SetInitData(Dir, Pos, tankindex ,pID, isBlueTeam);
 		Room_ObjectManager.Add_Object(OBJ_WEAPON, TempBullet);
 
-		auto sendBuffer = ServerPacketHandler::MAKE_S_BULLETADD(Dir.X, Dir.Y, Dir.Z, Pos.X,Pos.Y,Pos.Z);
+		auto sendBuffer = ServerPacketHandler::Make_S_BULLETADD(Dir.X, Dir.Y, Dir.Z, Pos.X,Pos.Y,Pos.Z);
 		Broadcast(sendBuffer);
 
 	}
@@ -752,6 +776,9 @@ void Room::CreateBomb(uint8 playerID, uint8 TankIndex, uint8 AreaNum)
 			Room_ObjectManager.Add_Object(OBJ_BOMB, obj); // 필요시 카테고리 조정
 		}
 	}
+
+	auto sendBuffer = ServerPacketHandler::Make_S_AIRDROP(AreaNum);
+	Broadcast(sendBuffer);
 
 }
 
@@ -974,7 +1001,7 @@ void Room::UpdateCaptureGauge(float deltaTime)
 
 	if (shouldBroadcast)
 	{
-		auto buffer = ServerPacketHandler::MAKE_S_CAPTURE(blueGauge, redGauge);
+		auto buffer = ServerPacketHandler::Make_S_CAPTURE(blueGauge, redGauge);
 		Broadcast(buffer);
 	}
 

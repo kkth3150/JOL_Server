@@ -210,7 +210,10 @@ struct Tank_INFO {
 
 struct Drone_INFO {
 
-    Matrix4x4	DroneTransform;
+    Vec3	    DroneTransform;
+    float       Yaw;
+    float       Roll;
+    float       Pitch;
     uint8		DroneHP;
 
 };
