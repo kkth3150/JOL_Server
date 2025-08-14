@@ -24,6 +24,7 @@ enum
 	S_ALL_DRONE_STATE = 18,
 	S_BULLET_ADD = 19,
 	S_AIRDROP_INDEX = 20,
+	S_TANK_RESPAWN = 21,
 
 	C_LOGIN = 1001,
 	C_FINISH_LOADING = 1002,
@@ -102,6 +103,7 @@ public:
 	static SendBufferRef Make_S_TANK_DAMAGED(uint8 id);
 	static SendBufferRef Make_S_TANK_DEAD(uint8 id);
 	static SendBufferRef Make_S_TANK_KILL(uint8 id);
+	static SendBufferRef Make_S_RespawnTank(uint8 TankIndex);
 
 	//ForLogin
 	static SendBufferRef Make_S_SUCCESS_LOGIN(uint16 id);
