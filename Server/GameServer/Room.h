@@ -91,7 +91,7 @@ public:
 	void Detect_Bullet_Tank_Collisions();
 	void HandleTankHit(Tank* tank, uint8 shooterPlayerID);
 	bool Check_OBB_Collision(const Vec3& point, const OBB& obb);
-
+	void Send_RespawnPacket(uint8 tankIndex);
 	void Detect_Bullet_Terrain_Collisions();
 
 

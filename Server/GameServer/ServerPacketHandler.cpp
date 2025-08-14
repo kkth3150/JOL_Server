@@ -224,8 +224,11 @@ void ServerPacketHandler::Handle_C_TANK_RESPAWN(PacketSessionRef& session, BYTE*
 
 		// 인덱스로 지정된 탱크 상태 갱신
 		Room_Manager::Get_Instance()->Get_Room(roomID)->SetTankRespawn(tankIndex, mat, potapRotation, posinRotation);
-
+		Room_Manager::Get_Instance()->Get_Room(roomID)->Send_RespawnPacket(tankIndex);
 	}
+
+
+
 
 }
 
@@ -814,6 +817,23 @@ SendBufferRef ServerPacketHandler::Make_S_TANK_KILL(uint8 Dead_Tank_Index)
 	header->id = S_TANK_KILL;
 
 
+	sendBuffer->Close(bw.WriteSize());
+
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_RespawnTank(uint8 TankIndex)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << TankIndex;
+
+	header->size = bw.WriteSize();
+	header->id = S_TANK_RESPAWN;
 	sendBuffer->Close(bw.WriteSize());
 
 	return sendBuffer;

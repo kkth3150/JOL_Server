@@ -332,9 +332,9 @@ bool Room::StartGame()
 
 void Room::BroadCast_LobbyInfo()
 {
+	READ_LOCK;
 	std::vector<Room_Ready_Data> playerStates;
 	{
-		READ_LOCK;
 
 		for (const auto& pair : _Player_States)
 		{
@@ -882,6 +882,25 @@ void Room::Detect_Bullet_Tank_Collisions()
 			break;
 		}
 	}
+}
+
+void Room::Send_RespawnPacket(uint8 tankIndex)
+{
+	auto tankList = Room_ObjectManager.Get_List(OBJ_TANK);
+	Tank* OwnerTank = dynamic_cast<Tank*>((*tankList)[tankIndex]);
+	
+	for (const Room_Ready_Data& killer : OwnerTank->GetPassengers())
+	{
+
+		auto RespawnBuf = ServerPacketHandler::Make_S_RespawnTank(tankIndex);
+		auto it = _Players.find(killer.PlayerID);
+
+		if (it != _Players.end() && it->second && it->second->OwenerSession)
+		{
+			it->second->OwenerSession->Send(RespawnBuf);
+		}
+	}
+	
 }
 
 void Room::Detect_Bullet_Terrain_Collisions()
