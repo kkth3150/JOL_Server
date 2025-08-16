@@ -92,6 +92,7 @@ public:
 	void HandleTankHit(Tank* tank, uint8 shooterPlayerID);
 	bool Check_OBB_Collision(const Vec3& point, const OBB& obb);
 	void Send_RespawnPacket(uint8 tankIndex);
+	void Send_SoundData(uint8 tnakIndex, float engvol,float engpit, float trkvol,float trkpit);
 	void Detect_Bullet_Terrain_Collisions();
 
 
