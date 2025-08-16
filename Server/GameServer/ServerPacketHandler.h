@@ -25,6 +25,7 @@ enum
 	S_BULLET_ADD = 19,
 	S_AIRDROP_INDEX = 20,
 	S_TANK_RESPAWN = 21,
+	S_TANK_SOUND = 22,
 
 	C_LOGIN = 1001,
 	C_FINISH_LOADING = 1002,
@@ -42,8 +43,8 @@ enum
 	C_MYPOS = 1014,
 	C_MYPOSIN = 1015,
 	C_MYDRONEMOVE = 1016,
-	C_AIRDROP = 1017
-
+	C_AIRDROP = 1017,
+	C_TANK_SOUND = 1018
 };
 
 
@@ -83,6 +84,7 @@ public:
 	static void Handle_C_DRONE_MOVE(PacketSessionRef& session, BYTE* buffer, int32 len);
 	static void Handle_C_AIRDROP(PacketSessionRef& session, BYTE* buffer, int32 len);
 
+	static void Handle_C_TNAKSOUND(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 
 
@@ -117,8 +119,8 @@ public:
 	static SendBufferRef Make_S_GAME_WIN(uint8 Dummy);
 	static SendBufferRef Make_S_GAME_LOSE(uint8 Dummy);
 	static SendBufferRef Make_S_CAPTURE(uint8 BULE, uint8  Red);
-	static SendBufferRef Make_S_BULLETADD(float DirX, float DirY, float DirZ, float PosX,float PosY, float PosZ);
+	static SendBufferRef Make_S_BULLETADD(uint8 TankIndex,float DirX, float DirY, float DirZ, float PosX,float PosY, float PosZ);
 	static SendBufferRef Make_S_AIRDROP(uint8 AreaIndex);
-
+	static SendBufferRef Make_S_SOUND(uint8 tankIndex, float engvol, float engfit, float trkvol, float trkfit);
 };
 

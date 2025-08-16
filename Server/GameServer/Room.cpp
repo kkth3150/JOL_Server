@@ -332,9 +332,10 @@ bool Room::StartGame()
 
 void Room::BroadCast_LobbyInfo()
 {
-	READ_LOCK;
 	std::vector<Room_Ready_Data> playerStates;
 	{
+
+	READ_LOCK;
 
 		for (const auto& pair : _Player_States)
 		{
@@ -694,7 +695,7 @@ void Room::CreateBullet(int8 pID, uint8 tankindex,WEAPON_ID ID, Vec3 Dir, Vec3 P
 		dynamic_cast<Normal_Potan*>(TempBullet)->SetInitData(Dir, Pos, tankindex ,pID, isBlueTeam);
 		Room_ObjectManager.Add_Object(OBJ_WEAPON, TempBullet);
 
-		auto sendBuffer = ServerPacketHandler::Make_S_BULLETADD(Dir.X, Dir.Y, Dir.Z, Pos.X,Pos.Y,Pos.Z);
+		auto sendBuffer = ServerPacketHandler::Make_S_BULLETADD(tankindex, Dir.X, Dir.Y, Dir.Z, Pos.X,Pos.Y,Pos.Z);
 		Broadcast(sendBuffer);
 
 	}
@@ -742,8 +743,8 @@ void Room::CreateBomb(uint8 playerID, uint8 TankIndex, uint8 AreaNum)
 	constexpr int   bombsPerLine = 6;   // 줄당 6개 → 총 12개
 	constexpr float PAD = 10.f;
 	constexpr float Z_OFFSET = 40.f; // 두 줄 간격
-	constexpr float BASE_ALT = 300.f; // 세계 좌측 끝에서의 기본 고도
-	constexpr float RAMP_ALT = 300.f; // 세계 우측 끝에서 추가되는 고도
+	constexpr float BASE_ALT = 200.f; // 세계 좌측 끝에서의 기본 고도
+	constexpr float RAMP_ALT = 100.f; // 세계 우측 끝에서 추가되는 고도
 	const bool leftToRight = true;       // 비행 방향(좌→우). 반대면 false
 
 	const float leftX = minX + PAD;
@@ -886,6 +887,7 @@ void Room::Detect_Bullet_Tank_Collisions()
 
 void Room::Send_RespawnPacket(uint8 tankIndex)
 {
+	
 	auto tankList = Room_ObjectManager.Get_List(OBJ_TANK);
 	Tank* OwnerTank = dynamic_cast<Tank*>((*tankList)[tankIndex]);
 	
@@ -901,6 +903,26 @@ void Room::Send_RespawnPacket(uint8 tankIndex)
 		}
 	}
 	
+}
+
+void Room::Send_SoundData(uint8 tankIndex, float engvol, float engpit, float trkvol, float trkpit)
+{
+	READ_LOCK;
+	auto tankList = Room_ObjectManager.Get_List(OBJ_TANK);
+	Tank* OwnerTank = dynamic_cast<Tank*>((*tankList)[tankIndex]);
+
+	for (const Room_Ready_Data& killer : OwnerTank->GetPassengers())
+	{
+
+		auto SoundBuf = ServerPacketHandler::Make_S_SOUND(tankIndex, engvol, engpit, trkvol, trkpit);
+		auto it = _Players.find(killer.PlayerID);
+
+		if (it != _Players.end() && it->second && it->second->OwenerSession)
+		{
+			it->second->OwenerSession->Send(SoundBuf);
+		}
+	}
+
 }
 
 void Room::Detect_Bullet_Terrain_Collisions()
