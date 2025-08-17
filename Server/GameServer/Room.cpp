@@ -925,6 +925,27 @@ void Room::Send_SoundData(uint8 tankIndex, float engvol, float engpit, float trk
 
 }
 
+void Room::Send_PingData(uint8 tankIndex, float X, float Y, float Z) {
+
+	READ_LOCK;
+	auto tankList = Room_ObjectManager.Get_List(OBJ_TANK);
+	Tank* OwnerTank = dynamic_cast<Tank*>((*tankList)[tankIndex]);
+
+
+	for (const Room_Ready_Data& killer : OwnerTank->GetPassengers())
+	{
+
+		auto PingBUf = ServerPacketHandler::Make_S_PINGPOS(tankIndex, X, Y, Z);
+		auto it = _Players.find(killer.PlayerID);
+
+		if (it != _Players.end() && it->second && it->second->OwenerSession)
+		{
+			it->second->OwenerSession->Send(PingBUf);
+		}
+	}
+
+}
+
 void Room::Detect_Bullet_Terrain_Collisions()
 {
 	auto bulletList = Room_ObjectManager.Get_List(OBJ_WEAPON);
