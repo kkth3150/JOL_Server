@@ -93,6 +93,7 @@ public:
 	bool Check_OBB_Collision(const Vec3& point, const OBB& obb);
 	void Send_RespawnPacket(uint8 tankIndex);
 	void Send_SoundData(uint8 tnakIndex, float engvol,float engpit, float trkvol,float trkpit);
+	void Send_PingData(uint8 tankIndex, float engvol, float engpit, float trkvol);
 	void Detect_Bullet_Terrain_Collisions();
 
 
@@ -225,7 +226,7 @@ private:
 	float blueGauge = 0.f;
 	float redGauge = 0.f;
 
-	const float captureRadius = 500.f;
+	const float captureRadius = 300.f;
 	const float gaugePerTankPerSecond = 100.f / 300.f; // = 0.333f
 	bool isGameEnded = false;
 };

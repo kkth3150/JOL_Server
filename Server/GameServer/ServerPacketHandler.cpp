@@ -80,6 +80,9 @@ void ServerPacketHandler::HandlePacket(PacketSessionRef& session, BYTE* buffer, 
 	case C_TANK_SOUND:
 		Handle_C_TNAKSOUND(session, buffer, len);
 		break;
+	case C_ADD_PING:
+		Handle_C_ADD_PING(session, buffer, len);
+		break;
 	default:
 		break;
 	}
@@ -285,7 +288,6 @@ void ServerPacketHandler::Handle_C_AIRDROP(PacketSessionRef& session, BYTE* buff
 void ServerPacketHandler::Handle_C_TNAKSOUND(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
 
-
 	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
 	BufferReader br(buffer, len);
 	PacketHeader header;
@@ -304,6 +306,29 @@ void ServerPacketHandler::Handle_C_TNAKSOUND(PacketSessionRef& session, BYTE* bu
 
 		Room_Manager::Get_Instance()->Get_Room(roomID)->Send_SoundData(TankIndex, engvol, engfit, trkvol, trkfit);
 	}
+}
+
+void ServerPacketHandler::Handle_C_ADD_PING(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	ClientSessionRef C_Session = static_pointer_cast<ClientSession>(session);
+	BufferReader br(buffer, len);
+	PacketHeader header;
+	br >> header;
+
+	uint8 TankIndex;
+	float X, Y, Z;
+	br >> TankIndex;
+	br >> X >> Y >> Z;
+
+
+
+	if (!C_Session->_players.empty()) {
+		uint64 playerID = C_Session->_players[0]->playerID;
+		int roomID = C_Session->_players[0]->RoomNum;
+
+		Room_Manager::Get_Instance()->Get_Room(roomID)->Send_PingData(TankIndex,X,Y,Z);
+	}
+
 }
 
 void ServerPacketHandler::Handle_C_SHOW_ROOM(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -680,6 +705,24 @@ SendBufferRef ServerPacketHandler::Make_S_SOUND(uint8 tankIndex, float engvol, f
 
 	header->size = bw.WriteSize();
 	header->id = S_TANK_SOUND;
+
+	sendBuffer->Close(bw.WriteSize());
+	return sendBuffer;
+}
+
+SendBufferRef ServerPacketHandler::Make_S_PINGPOS(uint8 tankIndex, float X, float Y, float Z)
+{
+	SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
+
+	BufferWriter bw(sendBuffer->Buffer(), sendBuffer->AllocSize());
+
+	PacketHeader* header = bw.Reserve<PacketHeader>();
+
+	bw << tankIndex;
+	bw << X << Y << Z;
+
+	header->size = bw.WriteSize();
+	header->id = S_ADD_PING;
 
 	sendBuffer->Close(bw.WriteSize());
 	return sendBuffer;
